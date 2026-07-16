@@ -499,6 +499,7 @@
   }
 </style>
 <base target="_blank">
+<base target="_blank">
 </head>
 <body>
 
@@ -833,11 +834,11 @@ function ensureStateShape(){
   if(typeof state.lastAutoLoadDate !== 'string') state.lastAutoLoadDate = '';
 }
 
-async function loadStateAsync(){
+function loadState(){
   try{
-    const result = await window.storage.get(STORAGE_KEY, false);
-    if(result && result.value){
-      const data = JSON.parse(result.value);
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if(raw){
+      const data = JSON.parse(raw);
       if(data.selections) state.selections = data.selections;
       if(data.completed) state.completed = data.completed;
       if(data.daily) state.daily = data.daily;
@@ -852,9 +853,9 @@ async function loadStateAsync(){
   ensureStateShape();
 }
 
-async function saveState(){
+function saveState(){
   try{
-    await window.storage.set(STORAGE_KEY, JSON.stringify(state), false);
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
   }catch(e){
     console.error('Impossibile salvare i dati', e);
     showToast('Impossibile salvare i dati, riprova');
@@ -1438,8 +1439,8 @@ function buildOnboardingCard(){
   onboardingSkipBtn.addEventListener('click', ()=>completeOnboarding(''));
 }
 
-async function init(){
-  await loadStateAsync();
+function init(){
+  loadState();
   const loadedFromWeek = autoLoadTodayFromWeek();
   saveState();
 
