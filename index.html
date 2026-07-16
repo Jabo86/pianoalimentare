@@ -2,551 +2,1182 @@
 <html lang="it">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Piano Alimentare</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+<title>NutriPiano — Design Spettacolare</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500;1,9..144,600&family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,500;1,9..144,600&family=Inter:wght@300;400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
+  *{margin:0;padding:0;box-sizing:border-box;}
   :root{
-    --ink:#16241F;
-    --ink2:#20342C;
-    --paper:#FFFFFF;
-    --bg:#F2F5F0;
-    --text:#1B2620;
-    --text-soft:#5E6E64;
-    --line:#E1E6DE;
-    --green:#3C8562;
-    --green-deep:#2C6249;
-    --green-soft:#E5F0E9;
-    --saffron:#E8A33D;
-    --saffron-soft:#FBEBD2;
-    --coral:#D2603F;
-    --shadow: 0 1px 2px rgba(22,36,31,.05), 0 10px 28px rgba(22,36,31,.06);
-    --radius-lg:20px;
-    --radius-md:14px;
-    --radius-sm:9px;
+    --bg:#F2F7F4;
+    --card:#FFFFFF;
+    --ink:#0C1914;
+    --ink-light:#1A3428;
+    --green:#2A8B5A;
+    --green-soft:#E6F3EC;
+    --green-glow:rgba(42,139,90,0.25);
+    --gold:#D9902E;
+    --gold-soft:#FCF0DB;
+    --rose:#D65A4A;
+    --text:#16241F;
+    --text-soft:#4F6B5D;
+    --line:#DDE8E0;
+    --shadow:0 4px 20px rgba(12,25,20,0.06);
+    --shadow-lg:0 12px 48px rgba(12,25,20,0.10);
+    --radius-sm:12px;
+    --radius-md:18px;
+    --radius-lg:28px;
+    --radius-full:999px;
   }
-  *{box-sizing:border-box;}
-  html,body{margin:0;padding:0;}
+  html,body{min-height:100vh;background:var(--bg);}
   body{
-    background:var(--bg);
     color:var(--text);
-    font-family:'Inter',sans-serif;
+    font-family:'Inter',-apple-system,sans-serif;
     line-height:1.5;
     -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
   }
   .mono{font-family:'IBM Plex Mono',monospace;}
-  button{font-family:inherit;}
+  button{cursor:pointer;font-family:inherit;border:none;background:none;}
   ::selection{background:var(--green);color:#fff;}
 
   .app{
-    max-width:520px;
+    max-width:440px;
     margin:0 auto;
     min-height:100vh;
     background:var(--bg);
+    padding-bottom:100px;
     position:relative;
-    padding-bottom:96px;
   }
 
-  /* ---------- APP BAR ---------- */
-  .appbar{
-    background:var(--ink);
-    color:#EFF3EE;
-    padding:26px 22px 68px;
-    border-radius:0 0 28px 28px;
+  /* ===== HEADER ===== */
+  .hero{
+    background:linear-gradient(160deg, #0C1914 0%, #1A3428 50%, #0C1914 100%);
+    padding:28px 22px 80px;
+    border-radius:0 0 44px 44px;
     position:relative;
     overflow:hidden;
+    isolation:isolate;
   }
-  .appbar::after{
-    content:"";
+  .hero::before{
+    content:'';
     position:absolute;
-    top:-60px;right:-60px;
-    width:220px;height:220px;
+    inset:0;
+    background:
+      radial-gradient(ellipse 130% 60% at 10% 0%, rgba(42,139,90,0.30), transparent 60%),
+      radial-gradient(ellipse 70% 50% at 90% 100%, rgba(217,144,46,0.10), transparent 50%);
+    pointer-events:none;
+  }
+  .hero-glow1{
+    position:absolute;
+    width:320px;height:320px;
     border-radius:50%;
-    background:radial-gradient(circle, rgba(60,133,98,.35), transparent 70%);
+    background:radial-gradient(circle, rgba(42,139,90,0.12), transparent 65%);
+    top:-100px;right:-80px;
+    pointer-events:none;
   }
-  .appbar-top{
-    display:flex;justify-content:space-between;align-items:flex-start;
-    position:relative;z-index:1;
+  .hero-glow2{
+    position:absolute;
+    width:200px;height:200px;
+    border-radius:50%;
+    background:radial-gradient(circle, rgba(217,144,46,0.06), transparent 55%);
+    bottom:-60px;left:-60px;
+    pointer-events:none;
   }
-  .appbar-top-text{
-    max-width:66%;
-    min-width:0;
+  .hero-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    position:relative;
+    z-index:2;
+    gap:12px;
   }
-  .eyebrow-date{
-    font-family:'IBM Plex Mono',monospace;
-    font-size:11.5px;
-    letter-spacing:.1em;
+  .hero-left{flex:1;min-width:0;}
+  .hero-date{
+    font-size:10.5px;
+    font-weight:600;
+    letter-spacing:.2em;
     text-transform:uppercase;
-    color:#A9BDB1;
-    margin:0 0 6px;
+    color:#94B8A4;
+    font-family:'IBM Plex Mono',monospace;
+    margin-bottom:2px;
+    word-break:break-word;
   }
-  .greeting{
+  .hero-greeting{
     font-family:'Fraunces',serif;
     font-style:italic;
+    font-weight:400;
+    font-size:clamp(32px,10vw,42px);
+    color:#fff;
+    line-height:1.05;
+    letter-spacing:-.02em;
+    word-break:break-word;
+  }
+  .hero-name{
+    font-size:15px;
     font-weight:500;
-    font-size:clamp(26px,7vw,32px);
-    margin:0;
-    letter-spacing:-.01em;
-    overflow-wrap:break-word;
+    color:#B8D4C4;
+    margin-top:4px;
+    word-break:break-word;
+    letter-spacing:.02em;
   }
-  .greeting-name{
-    font-size:14.5px;
-    font-weight:600;
-    color:#C9D8CD;
-    margin:5px 0 0;
-    overflow:hidden;
-    text-overflow:ellipsis;
-    white-space:nowrap;
-  }
-  .icon-btn{
-    width:40px;height:40px;border-radius:50%;
-    border:1px solid rgba(255,255,255,.16);
-    background:rgba(255,255,255,.06);
-    color:#EFF3EE;
-    display:flex;align-items:center;justify-content:center;
-    cursor:pointer;flex-shrink:0;
-    transition:background .15s ease;
-  }
-  .icon-btn:hover{background:rgba(255,255,255,.14);}
-  .icon-btn svg{width:18px;height:18px;}
-
-  /* ---------- RING (signature element) ---------- */
-  .ring-wrap{
-    position:absolute;
-    left:50%; bottom:-58px;
-    transform:translateX(-50%);
-    z-index:2;
-    width:164px;height:164px;
-  }
-  .ring-card{
-    width:164px;height:164px;
-    background:var(--paper);
+  .hero-btn{
+    width:44px;height:44px;
     border-radius:50%;
-    box-shadow:var(--shadow);
-    display:flex;align-items:center;justify-content:center;
+    border:1px solid rgba(255,255,255,0.08);
+    background:rgba(255,255,255,0.04);
+    backdrop-filter:blur(12px);
+    -webkit-backdrop-filter:blur(12px);
+    color:#E8F0EC;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    flex-shrink:0;
+    transition:all .25s ease;
+  }
+  .hero-btn:hover{background:rgba(255,255,255,0.12);transform:scale(1.05);}
+  .hero-btn:active{transform:scale(0.92);}
+  .hero-btn svg{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:2;}
+
+  /* ===== RING ===== */
+  .ring-float{
+    position:absolute;
+    left:50%;
+    bottom:-44px;
+    transform:translateX(-50%);
+    z-index:5;
+    width:132px;height:132px;
+  }
+  .ring-circle{
+    width:132px;height:132px;
+    border-radius:50%;
+    background:var(--card);
+    box-shadow:0 16px 56px rgba(12,25,20,0.18);
+    display:flex;
+    align-items:center;
+    justify-content:center;
     position:relative;
+    transition:transform .4s cubic-bezier(0.34,1.56,0.64,1);
   }
-  .ring-card svg{transform:rotate(-90deg);width:150px;height:150px;}
-  .ring-track{fill:none;stroke:var(--line);stroke-width:11;}
-  .ring-fill{
-    fill:none;stroke:var(--green);stroke-width:11;stroke-linecap:round;
-    transition:stroke-dashoffset .7s cubic-bezier(.4,0,.2,1), stroke .3s ease;
+  .ring-circle:hover{transform:scale(1.02);}
+  .ring-circle svg{transform:rotate(-90deg);width:116px;height:116px;}
+  .ring-track{fill:none;stroke:#E9EFEC;stroke-width:9;}
+  .ring-progress{
+    fill:none;
+    stroke:var(--green);
+    stroke-width:9;
+    stroke-linecap:round;
+    transition:stroke-dashoffset .9s cubic-bezier(0.4,0,0.2,1), stroke .4s ease;
   }
-  .ring-fill.full{stroke:var(--saffron);}
+  .ring-progress.complete{stroke:var(--gold);}
   .ring-center{
     position:absolute;inset:0;
-    display:flex;flex-direction:column;align-items:center;justify-content:center;
+    display:flex;flex-direction:column;
+    align-items:center;justify-content:center;
+    text-align:center;
   }
-  .ring-center .num{font-family:'IBM Plex Mono',monospace;font-weight:600;font-size:28px;color:var(--text);}
-  .ring-center .lbl{font-size:11px;color:var(--text-soft);text-transform:uppercase;letter-spacing:.08em;margin-top:2px;}
+  .ring-number{
+    font-family:'IBM Plex Mono',monospace;
+    font-weight:700;
+    font-size:24px;
+    color:var(--text);
+    line-height:1;
+    letter-spacing:-.02em;
+  }
+  .ring-label{
+    font-size:8.5px;
+    font-weight:700;
+    text-transform:uppercase;
+    letter-spacing:.15em;
+    color:var(--text-soft);
+    margin-top:1px;
+  }
 
-  .confetti{
-    position:absolute;
-    width:8px;height:8px;border-radius:2px;
-    top:50%;left:50%;
-    pointer-events:none;
-    animation: burst 900ms ease-out forwards;
+  /* ===== CONTENT ===== */
+  .content{
+    padding:62px 16px 10px;
   }
-  @keyframes burst{
-    0%{transform:translate(-50%,-50%) scale(0.6); opacity:1;}
-    100%{transform:translate(calc(-50% + var(--tx)), calc(-50% + var(--ty))) scale(1); opacity:0;}
+  .tab-panel{
+    display:none;
+    animation:fadeUp .4s ease;
   }
-
-  /* ---------- CONTENT ---------- */
-  .app-content{padding:82px 20px 12px;}
-  .tab-panel{display:none;animation: fadeIn .28s ease;}
   .tab-panel.active{display:block;}
-  @keyframes fadeIn{from{opacity:0; transform:translateY(6px);} to{opacity:1; transform:translateY(0);}}
-
-  h2.panel-title{
-    font-family:'Fraunces',serif;font-weight:600;font-size:21px;margin:4px 0 16px;
+  @keyframes fadeUp{
+    from{opacity:0; transform:translateY(16px);}
+    to{opacity:1; transform:translateY(0);}
   }
-  p.panel-sub{font-size:13px;color:var(--text-soft);margin:-10px 0 20px;}
 
-  /* ---------- CARDS ---------- */
+  .section-title{
+    font-family:'Fraunces',serif;
+    font-weight:600;
+    font-size:24px;
+    letter-spacing:-.01em;
+    margin:0 0 3px;
+  }
+  .section-sub{
+    font-size:13px;
+    color:var(--text-soft);
+    margin:0 0 18px;
+  }
+
   .card{
-    background:var(--paper);
+    background:var(--card);
     border-radius:var(--radius-lg);
     box-shadow:var(--shadow);
-    padding:18px 18px 20px;
+    padding:18px 16px 20px;
     margin-bottom:14px;
+    transition:box-shadow .3s ease;
   }
+  .card:hover{box-shadow:var(--shadow-lg);}
 
-  /* ---------- KCAL SUMMARY CARD ---------- */
-  .kcal-card{
-    background:linear-gradient(135deg, var(--ink) 0%, var(--green-deep) 100%);
+  /* ===== SUMMARY ===== */
+  .summary-card{
+    background:linear-gradient(145deg, #0C1914 0%, #1A3428 100%);
     border-radius:var(--radius-lg);
-    box-shadow:var(--shadow);
     padding:18px 20px;
-    margin-bottom:14px;
-    color:#EFF3EE;
-    display:flex;align-items:center;justify-content:space-between;
-    gap:14px;
+    margin-bottom:16px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:16px;
+    flex-wrap:wrap;
+    position:relative;
+    overflow:hidden;
+    box-shadow:var(--shadow-lg);
   }
-  .kcal-card .kcal-left{min-width:0;}
-  .kcal-card .kcal-label{font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:#B8CBBE;margin:0 0 4px;}
-  .kcal-card .kcal-value{font-family:'IBM Plex Mono',monospace;font-weight:700;font-size:26px;color:#fff;}
-  .kcal-card .kcal-value span{font-size:14px;font-weight:500;color:#B8CBBE;margin-left:3px;}
-  .kcal-card .kcal-note{font-size:11px;color:#9FB5A6;margin:5px 0 0;line-height:1.4;}
-  .kcal-badge{
-    display:inline-flex;align-items:center;gap:4px;
-    font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:600;
-    color:var(--green-deep);background:var(--green-soft);
-    padding:3px 8px;border-radius:10px;flex-shrink:0;white-space:nowrap;
+  .summary-card::after{
+    content:'';
+    position:absolute;
+    inset:0;
+    background:radial-gradient(ellipse 70% 50% at 80% 20%, rgba(42,139,90,0.18), transparent 55%);
+    pointer-events:none;
   }
-  .meal-row .meal-info .detail-row{display:flex;align-items:center;gap:7px;margin-top:2px;}
-  .meal-row .meal-info .detail-row .detail{margin-top:0;}
+  .summary-left{
+    flex:1;
+    min-width:90px;
+    position:relative;
+    z-index:1;
+  }
+  .summary-label{
+    font-size:9px;
+    font-weight:700;
+    text-transform:uppercase;
+    letter-spacing:.15em;
+    color:#94B8A4;
+    margin-bottom:1px;
+  }
+  .summary-kcal{
+    font-family:'IBM Plex Mono',monospace;
+    font-weight:700;
+    font-size:28px;
+    color:#fff;
+    line-height:1.1;
+    display:flex;
+    align-items:baseline;
+    gap:3px;
+    flex-wrap:wrap;
+  }
+  .summary-kcal small{
+    font-size:14px;
+    font-weight:500;
+    color:#94B8A4;
+  }
+  .summary-note{
+    font-size:9.5px;
+    color:#7AA08A;
+    margin-top:3px;
+    line-height:1.3;
+  }
+  .summary-right{
+    display:flex;
+    flex-direction:column;
+    align-items:flex-end;
+    gap:1px;
+    position:relative;
+    z-index:1;
+    flex-shrink:0;
+  }
+  .summary-price{
+    font-family:'IBM Plex Mono',monospace;
+    font-weight:700;
+    font-size:20px;
+    color:#F5D99E;
+    background:rgba(217,144,46,0.15);
+    border:1px solid rgba(217,144,46,0.20);
+    padding:4px 14px;
+    border-radius:var(--radius-full);
+    backdrop-filter:blur(4px);
+    line-height:1.2;
+  }
+  .summary-price small{
+    font-size:12px;
+    font-weight:500;
+    color:#C8DDCE;
+  }
+  .summary-price-label{
+    font-size:8px;
+    font-weight:600;
+    text-transform:uppercase;
+    letter-spacing:.12em;
+    color:#7AA08A;
+  }
 
-  /* meal summary rows in "Oggi" */
+  /* ===== BADGES ===== */
+  .badge-kcal{
+    display:inline-flex;
+    align-items:center;
+    gap:3px;
+    font-family:'IBM Plex Mono',monospace;
+    font-size:9.5px;
+    font-weight:600;
+    color:#1A6B48;
+    background:var(--green-soft);
+    padding:2px 10px;
+    border-radius:var(--radius-full);
+    white-space:nowrap;
+  }
+  .badge-cost{
+    display:inline-flex;
+    align-items:center;
+    gap:3px;
+    font-family:'IBM Plex Mono',monospace;
+    font-size:9.5px;
+    font-weight:600;
+    color:#8A611E;
+    background:var(--gold-soft);
+    padding:2px 10px;
+    border-radius:var(--radius-full);
+    white-space:nowrap;
+  }
+  .badge-done{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:9px;
+    font-weight:600;
+    color:#1A6B48;
+    background:rgba(42,139,90,0.10);
+    padding:2px 12px;
+    border-radius:var(--radius-full);
+    white-space:nowrap;
+  }
+
+  /* ===== MEAL ROW ===== */
   .meal-row{
-    display:flex;align-items:center;gap:13px;
-    padding:13px 0;
+    display:flex;
+    align-items:center;
+    gap:12px;
+    padding:12px 0;
     border-bottom:1px solid var(--line);
   }
   .meal-row:last-child{border-bottom:none;}
   .meal-check{
-    width:26px;height:26px;border-radius:50%;flex-shrink:0;
+    width:30px;height:30px;
+    border-radius:50%;
+    flex-shrink:0;
     border:2px solid var(--line);
-    display:flex;align-items:center;justify-content:center;
-    cursor:pointer;background:none;color:transparent;
-    transition:all .18s ease;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:none;
+    color:transparent;
+    transition:all .25s ease;
   }
-  .meal-check.done{background:var(--green);border-color:var(--green);color:#fff;}
-  .meal-check svg{width:13px;height:13px;}
+  .meal-check.done{
+    background:var(--green);
+    border-color:var(--green);
+    color:#fff;
+    box-shadow:0 2px 12px rgba(42,139,90,0.35);
+  }
+  .meal-check:active{transform:scale(0.88);}
+  .meal-check svg{width:14px;height:14px;}
   .meal-info{flex:1;min-width:0;}
-  .meal-info .name{font-weight:700;font-size:14.5px;display:flex;align-items:center;gap:7px;}
-  .meal-info .detail{font-size:12.5px;color:var(--text-soft);margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
-  .meal-info .detail.empty{font-style:italic;color:#B9A96A;}
-  .goto-btn{
-    font-size:12px;font-weight:600;color:var(--green-deep);
-    background:var(--green-soft);border:none;border-radius:20px;
-    padding:7px 12px;cursor:pointer;flex-shrink:0;
+  .meal-name{
+    font-weight:700;
+    font-size:15px;
+    display:flex;
+    align-items:center;
+    gap:8px;
+    flex-wrap:wrap;
   }
-  .goto-btn:hover{background:#d7ecdf;}
-
-  /* ---------- MEAL DETAIL CARDS (Pasti tab) ---------- */
   .meal-detail{
-    background:var(--paper);border-radius:var(--radius-lg);box-shadow:var(--shadow);
-    margin-bottom:14px;overflow:hidden;scroll-margin-top:16px;
-    border:2px solid transparent;
+    font-size:12px;
+    color:var(--text-soft);
+    margin-top:1px;
+    word-break:break-word;
+    overflow-wrap:break-word;
   }
-  .meal-detail.done{border-color:var(--green);}
-  .meal-detail-head{
-    display:flex;justify-content:space-between;align-items:center;
-    padding:16px 18px;background:var(--green-soft);
+  .meal-detail.empty{font-style:italic;color:#B9A96A;}
+  .meal-meta{
+    display:flex;
+    align-items:center;
+    gap:6px;
+    margin-top:1px;
+    flex-wrap:wrap;
+  }
+  .meal-goto{
+    font-size:11.5px;
+    font-weight:700;
+    color:var(--green);
+    background:var(--green-soft);
+    padding:6px 14px;
+    border-radius:var(--radius-full);
+    transition:all .2s ease;
+    flex-shrink:0;
+    white-space:nowrap;
+  }
+  .meal-goto:hover{background:#D4E9DF;transform:scale(1.03);}
+  .meal-goto:active{transform:scale(0.94);}
+
+  /* ===== MEAL DETAIL ===== */
+  .meal-detail-card{
+    background:var(--card);
+    border-radius:var(--radius-lg);
+    box-shadow:var(--shadow);
+    margin-bottom:16px;
+    overflow:hidden;
+    border:2px solid transparent;
+    transition:border-color .3s ease, box-shadow .3s ease;
+  }
+  .meal-detail-card.done{
+    border-color:var(--green);
+    box-shadow:var(--shadow-lg);
+  }
+  .meal-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:14px 18px;
+    background:var(--green-soft);
+    gap:10px;
+    flex-wrap:wrap;
+  }
+  .meal-header h3{
+    margin:0;
+    font-family:'Fraunces',serif;
+    font-weight:600;
+    font-size:18px;
+    color:#1A6B48;
+    display:flex;
+    align-items:center;
+    gap:8px;
+    flex-wrap:wrap;
+  }
+  .meal-header-right{
+    display:flex;
+    align-items:center;
+    gap:6px;
+    flex-wrap:wrap;
+  }
+  .meal-body{padding:16px 18px 18px;}
+  .meal-comp{margin-bottom:16px;}
+  .meal-comp:last-child{margin-bottom:0;}
+  .meal-comp-label{
+    display:block;
+    font-size:10px;
+    font-weight:700;
+    text-transform:uppercase;
+    letter-spacing:.08em;
+    color:var(--text-soft);
+    margin-bottom:5px;
+  }
+  .meal-comp select{
+    width:100%;
+    padding:11px 14px;
+    border:1.5px solid var(--line);
+    border-radius:var(--radius-sm);
+    background:var(--bg);
+    font-size:14px;
+    color:var(--text);
+    font-family:'Inter',sans-serif;
+    appearance:none;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%234F6B5D' stroke-width='2.5'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+    background-repeat:no-repeat;
+    background-position:right 14px center;
+    transition:border-color .2s ease, box-shadow .2s ease;
+  }
+  .meal-comp select:focus{
+    outline:none;
+    border-color:var(--green);
+    box-shadow:0 0 0 3px var(--green-glow);
+  }
+  .meal-fixed{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:10px 14px;
+    background:var(--gold-soft);
+    border-radius:var(--radius-sm);
+    font-size:13px;
+    flex-wrap:wrap;
+    gap:6px;
+  }
+  .meal-fixed .qty{
+    font-family:'IBM Plex Mono',monospace;
+    color:#8A611E;
+    font-weight:600;
+    font-size:11px;
+    white-space:nowrap;
+  }
+  .meal-toggle{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    margin-top:16px;
+    padding-top:16px;
+    border-top:1.5px dashed var(--line);
+    flex-wrap:wrap;
+    gap:8px;
+  }
+  .meal-toggle span{font-weight:700;font-size:13px;}
+
+  .examples-details{margin-top:14px;}
+  .examples-details summary{
+    cursor:pointer;
+    font-size:12px;
+    color:var(--text-soft);
+    font-weight:600;
+    list-style:none;
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+  }
+  .examples-details summary::before{
+    content:'+';
+    font-family:'IBM Plex Mono',monospace;
+    font-weight:700;
+    color:var(--green);
+  }
+  .examples-details[open] summary::before{content:'–';}
+  .examples-details ul{
+    margin:8px 0 0;
+    padding-left:20px;
+    font-size:12px;
+    color:var(--text-soft);
+    line-height:1.6;
+  }
+  .examples-details li{margin-bottom:3px;}
+
+  /* ===== WEEK ===== */
+  .week-card{
+    background:var(--card);
+    border-radius:var(--radius-lg);
+    box-shadow:var(--shadow);
+    margin-bottom:12px;
+    overflow:hidden;
+    border:2px solid transparent;
+    transition:border-color .3s ease;
+  }
+  .week-card.today{border-color:var(--gold);}
+  .week-card summary{
+    list-style:none;
+    cursor:pointer;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:14px 18px;
+    background:var(--green-soft);
     gap:10px;
   }
-  .meal-detail-head h3{margin:0;font-family:'Fraunces',serif;font-weight:600;font-size:17px;color:var(--green-deep);display:flex;align-items:center;gap:8px;}
-  .meal-detail-head .head-right{display:flex;align-items:center;gap:8px;flex-shrink:0;}
-  .meal-badge{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--green-deep);}
-  .meal-detail-body{padding:16px 18px 18px;}
+  .week-card summary::-webkit-details-marker{display:none;}
+  .week-summary-left{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    flex-wrap:wrap;
+    min-width:0;
+  }
+  .week-summary-left h3{
+    margin:0;
+    font-family:'Fraunces',serif;
+    font-weight:600;
+    font-size:16px;
+    color:#1A6B48;
+  }
+  .week-today{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:8px;
+    font-weight:700;
+    text-transform:uppercase;
+    letter-spacing:.06em;
+    background:var(--gold);
+    color:#fff;
+    padding:2px 10px;
+    border-radius:var(--radius-full);
+  }
+  .week-chevron{
+    width:22px;height:22px;
+    color:#1A6B48;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    transition:transform .25s ease;
+  }
+  .week-chevron svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:2.5;}
+  .week-card[open] .week-chevron{transform:rotate(180deg);}
+  .week-body{padding:16px 18px 18px;}
+  .week-meal{
+    margin-bottom:16px;
+    padding-bottom:16px;
+    border-bottom:1px dashed var(--line);
+  }
+  .week-meal:last-of-type{
+    margin-bottom:14px;
+    padding-bottom:0;
+    border-bottom:none;
+  }
+  .week-meal h4{
+    margin:0 0 8px;
+    font-size:13px;
+    font-weight:700;
+  }
+  .week-fixed-note{
+    font-size:11px;
+    color:var(--text-soft);
+    margin-top:6px;
+    font-style:italic;
+    word-break:break-word;
+  }
+  .week-use-btn{
+    width:100%;
+    font-size:13px;
+    font-weight:700;
+    color:#fff;
+    background:var(--green);
+    border-radius:var(--radius-sm);
+    padding:12px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+    transition:all .2s ease;
+  }
+  .week-use-btn:hover{background:#1A6B48;transform:translateY(-1px);}
+  .week-use-btn:active{transform:scale(0.97);}
+  .week-use-btn svg{width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:2.5;}
+  .week-actions-bar{
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+    margin-bottom:14px;
+  }
 
-  .component{margin-bottom:14px;}
-  .component:last-child{margin-bottom:0;}
-  .comp-label{display:block;font-size:11px;text-transform:uppercase;letter-spacing:.07em;color:var(--text-soft);font-weight:700;margin-bottom:6px;}
-  .component select{
-    width:100%;padding:11px 12px;border:1.5px solid var(--line);border-radius:var(--radius-sm);
-    background:var(--bg);font-size:14px;color:var(--text);font-family:'Inter',sans-serif;
-    appearance:none;
-    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%235E6E64' stroke-width='2.5'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
-    background-repeat:no-repeat; background-position:right 12px center;
+  /* ===== SWITCH ===== */
+  .switch{
+    position:relative;
+    display:inline-block;
+    width:46px;
+    height:26px;
+    flex-shrink:0;
   }
-  .component select:focus{outline:2px solid var(--green);outline-offset:1px;}
-  .fixed-item{
-    display:flex;justify-content:space-between;align-items:center;
-    padding:10px 13px;background:var(--saffron-soft);border-radius:var(--radius-sm);font-size:13.5px;
-  }
-  .fixed-item .qty{font-family:'IBM Plex Mono',monospace;color:#8A611E;font-weight:600;font-size:12.5px;}
-
-  .complete-toggle-row{
-    display:flex;align-items:center;justify-content:space-between;
-    margin-top:15px;padding-top:14px;border-top:1px dashed var(--line);
-  }
-  .complete-toggle-row span{font-size:13.5px;font-weight:700;}
-
-  details.examples{margin-top:12px;}
-  details.examples summary{cursor:pointer;font-size:12.5px;color:var(--text-soft);list-style:none;font-weight:600;}
-  details.examples summary::before{content:"+ ";}
-  details.examples[open] summary::before{content:"– ";}
-  details.examples ul{margin:8px 0 0;padding-left:18px;font-size:12.8px;color:var(--text-soft);}
-  details.examples li{margin-bottom:4px;}
-
-  /* ---------- MENU SETTIMANALE (tab Settimana) ---------- */
-  .day-card{
-    background:var(--paper);border-radius:var(--radius-lg);box-shadow:var(--shadow);
-    margin-bottom:12px;overflow:hidden;border:2px solid transparent;
-  }
-  .day-card.is-today{border-color:var(--saffron);}
-  .day-card summary{
-    list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;
-    padding:15px 18px;background:var(--green-soft);gap:10px;
-  }
-  .day-card summary::-webkit-details-marker{display:none;}
-  .day-card summary .day-title-wrap{display:flex;align-items:center;gap:9px;min-width:0;}
-  .day-card summary h3{margin:0;font-family:'Fraunces',serif;font-weight:600;font-size:16.5px;color:var(--green-deep);}
-  .day-today-badge{
-    font-family:'IBM Plex Mono',monospace;font-size:9.5px;font-weight:700;text-transform:uppercase;
-    letter-spacing:.05em;background:var(--saffron);color:#fff;padding:3px 8px;border-radius:10px;flex-shrink:0;
-  }
-  .day-card summary .day-chevron{
-    width:20px;height:20px;flex-shrink:0;color:var(--green-deep);
-    display:flex;align-items:center;justify-content:center;transition:transform .2s ease;
-  }
-  .day-card summary .day-chevron svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:2.5;}
-  .day-card[open] summary .day-chevron{transform:rotate(180deg);}
-  .day-card-body{padding:16px 18px 18px;}
-  .day-meal-block{margin-bottom:16px;padding-bottom:16px;border-bottom:1px dashed var(--line);}
-  .day-meal-block:last-of-type{margin-bottom:14px;padding-bottom:0;border-bottom:none;}
-  .day-meal-block h4{margin:0 0 10px;font-size:13px;font-weight:700;color:var(--text);}
-  .day-meal-fixed-note{font-size:11.5px;color:var(--text-soft);margin-top:6px;font-style:italic;}
-  .use-today-btn{
-    width:100%;font-size:13px;font-weight:700;color:#fff;
-    background:var(--green);border:none;border-radius:var(--radius-sm);
-    padding:11px;cursor:pointer;margin-top:2px;display:flex;align-items:center;justify-content:center;gap:6px;
-  }
-  .use-today-btn:hover{background:var(--green-deep);}
-  .use-today-btn svg{width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:2.3;}
-  .week-actions{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:14px;}
-
-  /* ---------- TOGGLE SWITCH ---------- */
-  .switch{position:relative;display:inline-block;width:46px;height:27px;flex-shrink:0;}
   .switch input{opacity:0;width:0;height:0;}
   .switch .slider{
-    position:absolute;inset:0;background:var(--line);border-radius:20px;cursor:pointer;
-    transition:background .18s ease;
+    position:absolute;inset:0;
+    background:var(--line);
+    border-radius:var(--radius-full);
+    cursor:pointer;
+    transition:background .2s ease;
   }
   .switch .slider::before{
-    content:"";position:absolute;width:21px;height:21px;left:3px;top:3px;
-    background:#fff;border-radius:50%;transition:transform .18s ease;
-    box-shadow:0 1px 3px rgba(0,0,0,.25);
+    content:'';
+    position:absolute;
+    width:20px;height:20px;
+    left:3px;top:3px;
+    background:#fff;
+    border-radius:50%;
+    transition:transform .2s ease;
+    box-shadow:0 1px 4px rgba(0,0,0,0.12);
   }
   .switch input:checked + .slider{background:var(--green);}
-  .switch input:checked + .slider::before{transform:translateX(19px);}
-  .switch input:focus-visible + .slider{outline:2px solid var(--green-deep);outline-offset:2px;}
+  .switch input:checked + .slider::before{transform:translateX(20px);}
 
-  .goal-row{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 0;border-bottom:1px solid var(--line);}
-  .goal-row:last-of-type{border-bottom:none;}
-  .goal-row .glabel-wrap{display:flex;align-items:center;gap:11px;min-width:0;}
+  /* ===== GOALS ===== */
+  .goal-row{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:12px;
+    padding:12px 0;
+    border-bottom:1px solid var(--line);
+  }
+  .goal-row:last-child{border-bottom:none;}
+  .goal-left{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    min-width:0;
+  }
   .goal-icon{
-    width:34px;height:34px;border-radius:11px;flex-shrink:0;
-    background:var(--green-soft);color:var(--green-deep);
-    display:flex;align-items:center;justify-content:center;
-    transition:background .18s ease, color .18s ease;
+    width:34px;height:34px;
+    border-radius:10px;
+    flex-shrink:0;
+    background:var(--green-soft);
+    color:#1A6B48;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    transition:all .25s ease;
   }
   .goal-icon svg{width:17px;height:17px;stroke:currentColor;fill:none;stroke-width:2;}
-  .goal-row.checked .goal-icon{background:var(--green);color:#fff;}
-  .goal-row .glabel{font-size:14px;font-weight:500;}
-  .goal-row.checked .glabel{color:var(--text-soft);text-decoration:line-through;text-decoration-color:var(--line);}
-
-  /* riepilogo progressi obiettivi */
-  .goal-progress-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;}
-  .goal-progress-head .gp-title{font-size:13.5px;font-weight:700;}
-  .goal-progress-head .gp-count{font-family:'IBM Plex Mono',monospace;font-size:13px;color:var(--green-deep);font-weight:600;}
-  .goal-progress-bar{width:100%;height:8px;border-radius:6px;background:var(--line);overflow:hidden;margin-bottom:4px;}
-  .goal-progress-bar .fill{height:100%;background:var(--green);border-radius:6px;transition:width .4s ease, background .3s ease;}
-  .goal-progress-bar .fill.full{background:var(--saffron);}
-  .goal-progress-note{font-size:11.5px;color:var(--text-soft);}
-
-  .mini-btn{
-    font-size:12px;font-weight:600;color:var(--text-soft);
-    background:var(--bg);border:1px solid var(--line);border-radius:20px;
-    padding:8px 14px;cursor:pointer;margin-top:14px;
+  .goal-row.done .goal-icon{background:var(--green);color:#fff;}
+  .goal-label{
+    font-size:14px;
+    font-weight:500;
+    word-break:break-word;
   }
-  .mini-btn:hover{border-color:var(--text-soft);color:var(--text);}
+  .goal-row.done .goal-label{
+    color:var(--text-soft);
+    text-decoration:line-through;
+    text-decoration-color:var(--line);
+  }
 
-  /* ---------- REFERENCE TAB ---------- */
+  .progress-head{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:12px;
+    flex-wrap:wrap;
+    gap:4px;
+  }
+  .progress-head .title{font-size:13px;font-weight:700;}
+  .progress-head .count{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:13px;
+    font-weight:600;
+    color:#1A6B48;
+  }
+  .progress-bar{
+    width:100%;
+    height:6px;
+    border-radius:var(--radius-full);
+    background:var(--line);
+    overflow:hidden;
+  }
+  .progress-bar .fill{
+    height:100%;
+    background:var(--green);
+    border-radius:var(--radius-full);
+    transition:width .5s ease, background .3s ease;
+    min-width:2px;
+  }
+  .progress-bar .fill.full{background:var(--gold);}
+  .progress-note{
+    font-size:11px;
+    color:var(--text-soft);
+    margin-top:4px;
+  }
+
+  .mini-action{
+    font-size:12px;
+    font-weight:600;
+    color:var(--text-soft);
+    background:var(--bg);
+    border:1.5px solid var(--line);
+    border-radius:var(--radius-full);
+    padding:9px 18px;
+    margin-top:14px;
+    transition:all .2s ease;
+  }
+  .mini-action:hover{
+    border-color:var(--text-soft);
+    color:var(--text);
+    background:var(--card);
+  }
+
+  /* ===== REFERENCE ===== */
   .ref-card summary{
-    list-style:none;cursor:pointer;font-weight:700;font-size:14.5px;
-    display:flex;align-items:center;gap:10px;padding:2px 0 4px;
+    list-style:none;
+    cursor:pointer;
+    font-weight:700;
+    font-size:14px;
+    display:flex;
+    align-items:center;
+    gap:12px;
+    padding:4px 0;
   }
   .ref-card summary::-webkit-details-marker{display:none;}
   .ref-card summary::before{
-    content:"+";font-family:'IBM Plex Mono',monospace;font-size:15px;
-    width:22px;height:22px;display:flex;align-items:center;justify-content:center;
-    border:1.5px solid var(--line);border-radius:50%;flex-shrink:0;
+    content:'+';
+    font-family:'IBM Plex Mono',monospace;
+    font-weight:700;
+    font-size:15px;
+    width:26px;height:26px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border:1.5px solid var(--line);
+    border-radius:50%;
+    flex-shrink:0;
+    color:var(--green);
   }
-  .ref-card details[open] summary::before, .ref-card summary.open::before{content:"–";}
-  .ref-body{padding:12px 2px 4px 32px;font-size:13.5px;color:var(--text-soft);}
-  .ref-body ul{padding-left:18px;margin:0;}
-  .ref-body li{margin-bottom:7px;}
+  .ref-card details[open] summary::before{content:'–';}
+  .ref-body{
+    padding:12px 4px 4px 38px;
+    font-size:13px;
+    color:var(--text-soft);
+  }
+  .ref-body ul{padding-left:20px;margin:0;}
+  .ref-body li{margin-bottom:7px;word-break:break-word;}
   .ref-body strong{color:var(--text);}
 
-  table.week-table{width:100%;border-collapse:collapse;font-size:12.5px;}
-  table.week-table th{
-    text-align:left;font-family:'IBM Plex Mono',monospace;text-transform:uppercase;
-    font-size:10px;letter-spacing:.05em;color:var(--text-soft);padding:6px 8px;border-bottom:2px solid var(--ink);
+  table.week-sample{
+    width:100%;
+    border-collapse:collapse;
+    font-size:11px;
   }
-  table.week-table td{padding:9px 8px;border-bottom:1px solid var(--line);vertical-align:top;color:var(--text);}
-  table.week-table tr:last-child td{border-bottom:none;}
-  .free-tag{
-    display:inline-block;background:var(--saffron-soft);color:#8A611E;
-    font-weight:700;font-size:10.5px;padding:2px 8px;border-radius:12px;
+  table.week-sample th{
+    text-align:left;
+    font-family:'IBM Plex Mono',monospace;
+    text-transform:uppercase;
+    font-size:8.5px;
+    letter-spacing:.08em;
+    color:var(--text-soft);
+    padding:5px 6px;
+    border-bottom:2px solid var(--ink);
+  }
+  table.week-sample td{
+    padding:6px 6px;
+    border-bottom:1px solid var(--line);
+    vertical-align:top;
+    word-break:break-word;
+  }
+  table.week-sample tr:last-child td{border-bottom:none;}
+  .free-tag-sample{
+    display:inline-block;
+    background:var(--gold-soft);
+    color:#8A611E;
+    font-weight:700;
+    font-size:9px;
+    padding:1px 10px;
+    border-radius:var(--radius-full);
   }
 
   .data-actions{display:flex;gap:10px;flex-wrap:wrap;}
   .btn{
-    font-weight:700;font-size:13.5px;padding:11px 18px;border-radius:var(--radius-sm);
-    border:none;background:var(--ink);color:#fff;cursor:pointer;
+    font-weight:700;
+    font-size:13px;
+    padding:11px 20px;
+    border-radius:var(--radius-sm);
+    background:var(--ink);
+    color:#fff;
+    transition:all .2s ease;
   }
-  .btn:hover{background:var(--green-deep);}
-  .btn.ghost{background:var(--bg);color:var(--text);border:1.5px solid var(--line);}
-  .btn.ghost:hover{border-color:var(--text-soft);}
-  #importFile{display:none;}
+  .btn:hover{background:#1A6B48;transform:translateY(-1px);}
+  .btn:active{transform:scale(0.97);}
+  .btn-ghost{
+    background:var(--bg);
+    color:var(--text);
+    border:1.5px solid var(--line);
+  }
+  .btn-ghost:hover{
+    border-color:var(--text-soft);
+    background:var(--card);
+  }
+  #importFile,#importFile2{display:none;}
 
-  /* ---------- TAB BAR ---------- */
-  .tabbar{
-    position:fixed; bottom:0; left:50%; transform:translateX(-50%);
-    width:100%; max-width:520px;
-    background:rgba(255,255,255,.92);
-    backdrop-filter:blur(10px);
+  /* ===== TAB BAR ===== */
+  .tab-bar{
+    position:fixed;
+    bottom:0;
+    left:50%;
+    transform:translateX(-50%);
+    width:100%;
+    max-width:440px;
+    background:rgba(255,255,255,0.92);
+    backdrop-filter:blur(20px);
+    -webkit-backdrop-filter:blur(20px);
     border-top:1px solid var(--line);
     display:flex;
-    padding:8px 10px calc(8px + env(safe-area-inset-bottom));
+    padding:6px 4px calc(6px + env(safe-area-inset-bottom));
     z-index:50;
+    box-shadow:0 -4px 24px rgba(12,25,20,0.04);
   }
-  .tab-btn{
-    flex:1; background:none; border:none; cursor:pointer;
-    display:flex; flex-direction:column; align-items:center; gap:4px;
-    padding:6px 2px; border-radius:12px;
-    color:var(--text-soft); font-size:11px; font-weight:600;
-    transition:color .15s ease;
+  .tab-item{
+    flex:1;
+    background:none;
+    border:none;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:2px;
+    padding:6px 2px;
+    border-radius:14px;
+    color:var(--text-soft);
+    font-size:9px;
+    font-weight:600;
+    transition:all .2s ease;
     position:relative;
   }
-  .tab-btn svg{width:21px;height:21px;stroke:currentColor;fill:none;stroke-width:1.8;}
-  .tab-btn.active{color:var(--green-deep);}
-  .tab-btn.active svg{stroke:var(--green-deep);}
-  .tab-btn .tab-dot{
-    position:absolute;top:2px;right:calc(50% - 15px);
-    width:7px;height:7px;border-radius:50%;background:var(--coral);
+  .tab-item svg{
+    width:22px;height:22px;
+    stroke:currentColor;
+    fill:none;
+    stroke-width:1.8;
+  }
+  .tab-item.active{
+    color:var(--green);
+    background:var(--green-soft);
+  }
+  .tab-item.active svg{stroke:var(--green);}
+  .tab-dot{
+    position:absolute;
+    top:3px;
+    right:calc(50% - 18px);
+    width:6px;height:6px;
+    border-radius:50%;
+    background:var(--rose);
     display:none;
   }
-  .tab-btn .tab-dot.show{display:block;}
+  .tab-dot.show{display:block;}
 
-  /* ---------- SETTINGS SHEET ---------- */
+  /* ===== SHEET ===== */
   .sheet-overlay{
-    position:fixed;inset:0;background:rgba(22,36,31,.4);
-    display:flex;align-items:flex-end;justify-content:center;
-    z-index:100; opacity:0; pointer-events:none; transition:opacity .2s ease;
+    position:fixed;inset:0;
+    background:rgba(12,25,20,0.50);
+    display:flex;
+    align-items:flex-end;
+    justify-content:center;
+    z-index:100;
+    opacity:0;
+    pointer-events:none;
+    transition:opacity .3s ease;
+    backdrop-filter:blur(4px);
+    -webkit-backdrop-filter:blur(4px);
   }
   .sheet-overlay.open{opacity:1;pointer-events:auto;}
   .sheet{
-    background:var(--paper); width:100%; max-width:520px;
-    border-radius:24px 24px 0 0; padding:22px 22px calc(22px + env(safe-area-inset-bottom));
-    transform:translateY(100%); transition:transform .25s cubic-bezier(.4,0,.2,1);
+    background:var(--card);
+    width:100%;max-width:440px;
+    border-radius:28px 28px 0 0;
+    padding:18px 22px calc(22px + env(safe-area-inset-bottom));
+    transform:translateY(100%);
+    transition:transform .35s cubic-bezier(0.4,0,0.2,1);
   }
   .sheet-overlay.open .sheet{transform:translateY(0);}
-  .sheet-handle{width:40px;height:4px;background:var(--line);border-radius:4px;margin:0 auto 18px;}
-  .sheet h3{font-family:'Fraunces',serif;font-weight:600;margin:0 0 4px;font-size:19px;}
-  .sheet p{font-size:12.5px;color:var(--text-soft);margin:0 0 18px;}
+  .sheet-handle{
+    width:40px;height:4px;
+    background:var(--line);
+    border-radius:var(--radius-full);
+    margin:0 auto 16px;
+  }
+  .sheet h3{
+    font-family:'Fraunces',serif;
+    font-weight:600;
+    font-size:20px;
+    margin:0 0 4px;
+  }
+  .sheet p{
+    font-size:12.5px;
+    color:var(--text-soft);
+    margin:0 0 16px;
+  }
+  .sheet input[type="text"]{
+    width:100%;
+    padding:12px 14px;
+    border:1.5px solid var(--line);
+    border-radius:var(--radius-sm);
+    font-size:14px;
+    font-family:'Inter',sans-serif;
+    margin-bottom:16px;
+    background:var(--bg);
+    color:var(--text);
+    outline:none;
+    transition:border-color .2s ease;
+  }
+  .sheet input[type="text"]:focus{
+    border-color:var(--green);
+    box-shadow:0 0 0 3px var(--green-glow);
+  }
 
+  /* ===== TOAST ===== */
   .toast{
-    position:fixed; bottom:96px; left:50%; transform:translateX(-50%) translateY(20px);
-    background:var(--ink); color:#fff; padding:12px 22px; border-radius:24px; font-size:13px;
-    opacity:0; pointer-events:none; transition:all .25s ease; z-index:200;
-    box-shadow:0 8px 20px rgba(0,0,0,.2);
-  }
-  .toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
-
-  /* ---------- ONBOARDING (schermata iniziale profilo) ---------- */
-  .onboarding-overlay{
-    position:fixed; inset:0; z-index:500;
-    background:radial-gradient(circle at 30% 20%, rgba(60,133,98,.55), transparent 55%), var(--ink);
-    display:flex; align-items:center; justify-content:center;
-    padding:24px;
-    opacity:1; transition:opacity .3s ease;
-  }
-  .onboarding-overlay.hidden{ opacity:0; pointer-events:none; }
-  .onboarding-card{
-    max-width:340px; width:100%;
-    background:rgba(255,255,255,.06);
-    border:1px solid rgba(255,255,255,.14);
-    border-radius:var(--radius-lg);
-    padding:32px 26px;
+    position:fixed;
+    bottom:100px;
+    left:50%;
+    transform:translateX(-50%) translateY(16px);
+    background:var(--ink);
+    color:#fff;
+    padding:12px 24px;
+    border-radius:var(--radius-full);
+    font-size:13px;
+    font-weight:500;
+    opacity:0;
+    pointer-events:none;
+    transition:all .35s ease;
+    z-index:200;
+    box-shadow:var(--shadow-lg);
+    max-width:90%;
     text-align:center;
-    color:#EFF3EE;
-    backdrop-filter:blur(6px);
+    word-break:break-word;
   }
-  .onboarding-emoji{font-size:38px;margin-bottom:10px;}
-  .onboarding-card h2{
-    font-family:'Fraunces',serif;font-weight:600;font-style:italic;
-    font-size:26px;margin:0 0 8px;
+  .toast.show{
+    opacity:1;
+    transform:translateX(-50%) translateY(0);
   }
-  .onboarding-card p{
-    font-size:13.5px;color:#C9D8CD;margin:0 0 20px;line-height:1.5;
-  }
-  .onboarding-card input{
-    width:100%;padding:13px 14px;border-radius:var(--radius-sm);
-    border:1.5px solid rgba(255,255,255,.18);
-    background:rgba(255,255,255,.08);color:#fff;
-    font-size:15px;font-family:'Inter',sans-serif;
-    margin-bottom:14px;outline:none;text-align:center;
-  }
-  .onboarding-card input::placeholder{color:rgba(255,255,255,.45);}
-  .onboarding-card input:focus{border-color:var(--green);}
-  .onboarding-card .btn{background:var(--green);}
-  .onboarding-card .btn:hover{background:var(--green-deep);}
-  .onboarding-skip{
-    display:block;width:100%;background:none;border:none;
-    color:rgba(255,255,255,.5);font-size:12.5px;cursor:pointer;
-    margin-top:14px;text-decoration:underline;
-  }
-  .onboarding-skip:hover{color:rgba(255,255,255,.8);}
-  .onboarding-loading{color:rgba(255,255,255,.6);font-size:13px;}
 
-  @media (prefers-reduced-motion: reduce){
-    *{transition:none !important; animation:none !important;}
+  /* ===== ONBOARDING ===== */
+  .onboarding-overlay{
+    position:fixed;inset:0;z-index:500;
+    background:radial-gradient(ellipse at 30% 20%, rgba(42,139,90,0.25), transparent 55%), #0C1914;
+    display:flex;align-items:center;justify-content:center;
+    padding:24px;
+    opacity:1;transition:opacity .5s ease;
+  }
+  .onboarding-overlay.hidden{
+    opacity:0;
+    pointer-events:none;
+  }
+  .onboarding-box{
+    max-width:360px;
+    width:100%;
+    background:rgba(255,255,255,0.04);
+    border:1px solid rgba(255,255,255,0.08);
+    border-radius:var(--radius-lg);
+    padding:36px 28px 32px;
+    text-align:center;
+    color:#F0F5F0;
+    backdrop-filter:blur(16px);
+    -webkit-backdrop-filter:blur(16px);
+  }
+  .onboarding-emoji{font-size:44px;margin-bottom:10px;}
+  .onboarding-box h2{
+    font-family:'Fraunces',serif;
+    font-weight:600;
+    font-style:italic;
+    font-size:28px;
+    margin:0 0 6px;
+  }
+  .onboarding-box p{
+    font-size:14px;
+    color:#B8D4C4;
+    margin:0 0 20px;
+    line-height:1.6;
+  }
+  .onboarding-box input{
+    width:100%;
+    padding:14px 16px;
+    border-radius:var(--radius-sm);
+    border:1.5px solid rgba(255,255,255,0.08);
+    background:rgba(255,255,255,0.05);
+    color:#fff;
+    font-size:16px;
+    font-family:'Inter',sans-serif;
+    margin-bottom:14px;
+    outline:none;
+    text-align:center;
+    transition:border-color .2s ease;
+  }
+  .onboarding-box input::placeholder{color:rgba(255,255,255,0.25);}
+  .onboarding-box input:focus{
+    border-color:var(--green);
+    box-shadow:0 0 0 3px rgba(42,139,90,0.25);
+  }
+  .onboarding-box .btn{
+    width:100%;
+    background:var(--green);
+    font-size:15px;
+    padding:14px;
+  }
+  .onboarding-box .btn:hover{background:#1A6B48;}
+  .onboarding-skip{
+    display:block;
+    width:100%;
+    background:none;
+    border:none;
+    color:rgba(255,255,255,0.30);
+    font-size:12px;
+    cursor:pointer;
+    margin-top:14px;
+    text-decoration:underline;
+    text-underline-offset:3px;
+    transition:color .2s ease;
+  }
+  .onboarding-skip:hover{color:rgba(255,255,255,0.6);}
+  .onboarding-loading{color:rgba(255,255,255,0.3);font-size:14px;}
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width:400px){
+    .hero{padding:24px 18px 72px;}
+    .ring-float{width:116px;height:116px;bottom:-36px;}
+    .ring-circle{width:116px;height:116px;}
+    .ring-circle svg{width:102px;height:102px;}
+    .ring-number{font-size:20px;}
+    .ring-label{font-size:7.5px;}
+    .content{padding:54px 12px 10px;}
+    .summary-kcal{font-size:24px;}
+    .summary-price{font-size:17px;padding:3px 12px;}
+    .section-title{font-size:20px;}
+    .meal-header{padding:12px 14px;}
+    .meal-body{padding:14px 14px 16px;}
+    .hero-greeting{font-size:clamp(28px,9vw,34px);}
+  }
+  @media (max-width:360px){
+    .hero-greeting{font-size:26px;}
+    .summary-kcal{font-size:20px;}
+    .summary-price{font-size:15px;padding:2px 10px;}
+    .tab-item{font-size:8px;}
+    .tab-item svg{width:18px;height:18px;}
+  }
+  @media (prefers-reduced-motion:reduce){
+    *{transition:none!important;animation:none!important;}
   }
 </style>
-<base target="_blank">
-<base target="_blank">
 </head>
 <body>
 
 <div class="onboarding-overlay" id="onboardingOverlay">
-  <div class="onboarding-card" id="onboardingCardInner">
+  <div class="onboarding-box" id="onboardingBox">
     <p class="onboarding-loading">Caricamento…</p>
   </div>
 </div>
 
 <div class="app" id="appRoot" style="visibility:hidden;">
-  <header class="appbar">
-    <div class="appbar-top">
-      <div class="appbar-top-text">
-        <p class="eyebrow-date mono" id="dateLabel">—</p>
-        <h1 class="greeting" id="greeting">Buonasera</h1>
-        <p class="greeting-name" id="greetingName"></p>
+
+  <!-- ===== HEADER ===== -->
+  <header class="hero">
+    <div class="hero-glow1"></div>
+    <div class="hero-glow2"></div>
+    <div class="hero-top">
+      <div class="hero-left">
+        <div class="hero-date mono" id="dateLabel">—</div>
+        <h1 class="hero-greeting" id="greeting">Buonasera</h1>
+        <div class="hero-name" id="greetingName"></div>
       </div>
-      <button class="icon-btn" id="settingsBtn" aria-label="Impostazioni">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 11-2.83 2.83l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 11-2.83-2.83l.06-.06A1.65 1.65 0 004.6 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 112.83-2.83l.06.06A1.65 1.65 0 009 4.6a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 112.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg>
+      <button class="hero-btn" id="settingsBtn" aria-label="Impostazioni">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 11-2.83 2.83l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 11-2.83-2.83l.06-.06A1.65 1.65 0 004.6 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 112.83-2.83l.06.06A1.65 1.65 0 009 4.6a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 112.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg>
       </button>
     </div>
-    <div class="ring-wrap" id="ringWrap">
-      <div class="ring-card">
-        <svg viewBox="0 0 150 150">
-          <circle class="ring-track" cx="75" cy="75" r="60"/>
-          <circle class="ring-fill" id="ringFill" cx="75" cy="75" r="60"/>
+
+    <!-- RING -->
+    <div class="ring-float" id="ringWrap">
+      <div class="ring-circle">
+        <svg viewBox="0 0 140 140">
+          <circle class="ring-track" cx="70" cy="70" r="56"/>
+          <circle class="ring-progress" id="ringFill" cx="70" cy="70" r="56"/>
         </svg>
         <div class="ring-center">
-          <span class="num mono" id="ringNum">0/5</span>
-          <span class="lbl">pasti oggi</span>
+          <span class="ring-number mono" id="ringNum">0/5</span>
+          <span class="ring-label">pasti oggi</span>
         </div>
       </div>
     </div>
   </header>
 
-  <main class="app-content">
+  <!-- ===== CONTENT ===== -->
+  <main class="content">
 
     <!-- TAB: OGGI -->
     <section class="tab-panel active" id="tab-oggi">
-      <h2 class="panel-title">I tuoi pasti</h2>
-      <p class="panel-sub">Segna cosa hai completato oggi.</p>
+      <h2 class="section-title">I tuoi pasti</h2>
+      <p class="section-sub">Segna cosa hai completato oggi.</p>
 
-      <div class="kcal-card">
-        <div class="kcal-left">
-          <p class="kcal-label">Kcal stimate di oggi</p>
-          <div class="kcal-value" id="kcalTotalValue">0<span>kcal</span></div>
-          <p class="kcal-note">Stima approssimativa basata sulle scelte fatte, non sostituisce il piano del tuo nutrizionista.</p>
+      <div class="summary-card">
+        <div class="summary-left">
+          <div class="summary-label">Kcal stimate di oggi</div>
+          <div class="summary-kcal" id="kcalTotalValue">0<small>kcal</small></div>
+          <div class="summary-note">Stima approssimativa, non sostituisce il piano del nutrizionista.</div>
+        </div>
+        <div class="summary-right">
+          <div class="summary-price" id="dailyCostBadge">€ 0.00</div>
+          <div class="summary-price-label">spesa stimata</div>
         </div>
       </div>
 
@@ -555,59 +1186,59 @@
 
     <!-- TAB: PASTI -->
     <section class="tab-panel" id="tab-pasti">
-      <h2 class="panel-title">Scegli cosa mangi</h2>
-      <p class="panel-sub">Seleziona l'alternativa che stai consumando per ogni pasto.</p>
+      <h2 class="section-title">Scegli cosa mangi</h2>
+      <p class="section-sub">Seleziona l'alternativa che stai consumando per ogni pasto.</p>
       <div id="mealsContainer"></div>
     </section>
 
     <!-- TAB: SETTIMANA -->
     <section class="tab-panel" id="tab-settimana">
-      <h2 class="panel-title">Menù settimanale</h2>
-      <p class="panel-sub">Pianifica in anticipo cosa mangerai ogni giorno, poi usa un giorno come pasti di "Oggi" quando vuoi.</p>
+      <h2 class="section-title">Menù settimanale</h2>
+      <p class="section-sub">Pianifica in anticipo cosa mangerai ogni giorno.</p>
       <div id="weekMenuContainer"></div>
     </section>
 
     <!-- TAB: OBIETTIVI -->
     <section class="tab-panel" id="tab-obiettivi">
-      <h2 class="panel-title">Obiettivi di oggi</h2>
+      <h2 class="section-title">Obiettivi di oggi</h2>
       <div class="card">
-        <div class="goal-progress-head">
-          <span class="gp-title">Progresso giornaliero</span>
-          <span class="gp-count mono" id="dailyProgressCount">0/3</span>
+        <div class="progress-head">
+          <span class="title">Progresso giornaliero</span>
+          <span class="count mono" id="dailyProgressCount">0/3</span>
         </div>
-        <div class="goal-progress-bar"><div class="fill" id="dailyProgressFill"></div></div>
-        <div class="goal-progress-note" id="dailyProgressNote">Comincia a spuntare i tuoi obiettivi di oggi.</div>
-        <div id="dailyGoals" style="margin-top:6px;"></div>
-        <button class="mini-btn" id="resetDayBtn">Nuovo giorno</button>
+        <div class="progress-bar"><div class="fill" id="dailyProgressFill"></div></div>
+        <div class="progress-note" id="dailyProgressNote">Comincia a spuntare i tuoi obiettivi di oggi.</div>
+        <div id="dailyGoals" style="margin-top:8px;"></div>
+        <button class="mini-action" id="resetDayBtn">Nuovo giorno</button>
       </div>
-      <h2 class="panel-title">Obiettivi della settimana</h2>
+      <h2 class="section-title" style="margin-top:6px;">Obiettivi della settimana</h2>
       <div class="card">
-        <div class="goal-progress-head">
-          <span class="gp-title">Progresso settimanale</span>
-          <span class="gp-count mono" id="weeklyProgressCount">0/4</span>
+        <div class="progress-head">
+          <span class="title">Progresso settimanale</span>
+          <span class="count mono" id="weeklyProgressCount">0/4</span>
         </div>
-        <div class="goal-progress-bar"><div class="fill" id="weeklyProgressFill"></div></div>
-        <div class="goal-progress-note" id="weeklyProgressNote">Un passo alla volta, questa settimana.</div>
-        <div id="weeklyGoals" style="margin-top:6px;"></div>
-        <button class="mini-btn" id="resetWeekBtn">Nuova settimana</button>
+        <div class="progress-bar"><div class="fill" id="weeklyProgressFill"></div></div>
+        <div class="progress-note" id="weeklyProgressNote">Un passo alla volta, questa settimana.</div>
+        <div id="weeklyGoals" style="margin-top:8px;"></div>
+        <button class="mini-action" id="resetWeekBtn">Nuova settimana</button>
       </div>
     </section>
 
     <!-- TAB: RIFERIMENTI -->
     <section class="tab-panel" id="tab-riferimenti">
-      <h2 class="panel-title">Il tuo piano</h2>
+      <h2 class="section-title">Il tuo piano</h2>
 
       <div class="card ref-card">
         <details><summary>Frequenza alimentare consigliata</summary>
           <div class="ref-body"><ul>
-            <li><strong>Frutta e verdura:</strong> almeno 4 porzioni al giorno, variando colori e tipi.</li>
+            <li><strong>Frutta e verdura:</strong> almeno 4 porzioni al giorno.</li>
             <li><strong>Cereali:</strong> ogni giorno, preferibilmente integrali.</li>
-            <li><strong>Pesce:</strong> 2-3 volte a settimana, alternando bianco e azzurro.</li>
+            <li><strong>Pesce:</strong> 2-3 volte a settimana.</li>
             <li><strong>Carne bianca:</strong> 2 volte a settimana.</li>
             <li><strong>Carne rossa:</strong> massimo 1 volta a settimana.</li>
             <li><strong>Affettati:</strong> massimo 1 volta a settimana.</li>
             <li><strong>Latticini:</strong> anche quotidiani, versioni magre.</li>
-            <li><strong>Formaggi stagionati/grassi:</strong> massimo 1-2 volte a settimana.</li>
+            <li><strong>Formaggi grassi:</strong> massimo 1-2 volte a settimana.</li>
           </ul></div>
         </details>
       </div>
@@ -615,9 +1246,9 @@
       <div class="card ref-card">
         <details><summary>Consigli utili</summary>
           <div class="ref-body"><ul>
-            <li>Pesa il cibo quando possibile, per rispettare le porzioni.</li>
+            <li>Pesa il cibo quando possibile per rispettare le porzioni.</li>
             <li>Turno di notte? Anticipa la colazione, anche solo in parte.</li>
-            <li>Sfizio settimanale concesso: fermati quando sei soddisfatto, non pieno.</li>
+            <li>Sfizio settimanale concesso: fermati quando sei soddisfatto.</li>
           </ul></div>
         </details>
       </div>
@@ -625,26 +1256,26 @@
       <div class="card ref-card">
         <details><summary>Esempio di menù settimanale</summary>
           <div class="ref-body">
-            <table class="week-table">
+            <table class="week-sample">
               <tr><th>Giorno</th><th>Pranzo</th><th>Cena</th></tr>
-              <tr><td>Lun</td><td>Pasta + pollo grigliato + insalata</td><td>Cracker + orata al forno + verdure grigliate</td></tr>
-              <tr><td>Mar</td><td>Cous cous + mozzarella light + pomodorini</td><td>Pane + frittata con spinaci</td></tr>
-              <tr><td>Mer</td><td>Pasta + tonno + pomodori</td><td>Polenta + bistecca magra + radicchio</td></tr>
-              <tr><td>Gio</td><td>Pasta al pomodoro + roast beef + rucola</td><td>Pane + branzino al forno + insalata</td></tr>
-              <tr><td>Ven</td><td>Farro + gamberetti + zucchine</td><td>Insalata di patate + sgombro + pomodorini</td></tr>
-              <tr><td>Sab</td><td>Pane + fiocchi di latte + insalata</td><td><span class="free-tag">CENA LIBERA</span></td></tr>
-              <tr><td>Dom</td><td>Pasta con broccoli + uova sode</td><td>Wasa + spada grigliato + verdure miste</td></tr>
+              <tr><td>Lun</td><td>Pasta + pollo + insalata</td><td>Cracker + orata + verdure</td></tr>
+              <tr><td>Mar</td><td>Cous cous + mozzarella + pomodorini</td><td>Pane + frittata + spinaci</td></tr>
+              <tr><td>Mer</td><td>Pasta + tonno + pomodori</td><td>Polenta + bistecca + radicchio</td></tr>
+              <tr><td>Gio</td><td>Pasta al pomodoro + roast beef + rucola</td><td>Pane + branzino + insalata</td></tr>
+              <tr><td>Ven</td><td>Farro + gamberetti + zucchine</td><td>Insalata di patate + sgombro</td></tr>
+              <tr><td>Sab</td><td>Pane + fiocchi di latte + insalata</td><td><span class="free-tag-sample">CENA LIBERA</span></td></tr>
+              <tr><td>Dom</td><td>Pasta + broccoli + uova sode</td><td>Wasa + spada + verdure</td></tr>
             </table>
           </div>
         </details>
       </div>
 
       <div class="card">
-        <h3 style="font-family:'Fraunces',serif;font-size:15.5px;margin:0 0 4px;">Dati</h3>
-        <p style="font-size:12.5px;color:var(--text-soft);margin:0 0 14px;">I tuoi dati sono salvati automaticamente. Puoi comunque esportarli o importarli come backup.</p>
+        <h3 style="font-family:'Fraunces',serif;font-size:16px;margin:0 0 4px;">Dati</h3>
+        <p style="font-size:12.5px;color:var(--text-soft);margin:0 0 14px;">I tuoi dati sono salvati automaticamente. Puoi esportarli o importarli come backup.</p>
         <div class="data-actions">
-          <button class="btn ghost" id="exportBtn2">Esporta dati</button>
-          <label for="importFile2" class="btn ghost" style="cursor:pointer;">Importa dati</label>
+          <button class="btn btn-ghost" id="exportBtn2">Esporta dati</button>
+          <label for="importFile2" class="btn btn-ghost" style="cursor:pointer;">Importa dati</label>
           <input type="file" id="importFile2" accept=".json">
         </div>
       </div>
@@ -652,44 +1283,43 @@
 
   </main>
 
-  <nav class="tabbar">
-    <button class="tab-btn active" data-tab="oggi">
+  <!-- ===== TAB BAR ===== -->
+  <nav class="tab-bar">
+    <button class="tab-item active" data-tab="oggi">
       <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M8 12l3 3 5-6"/></svg>
       Oggi
     </button>
-    <button class="tab-btn" data-tab="pasti">
+    <button class="tab-item" data-tab="pasti">
       <svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="3"/><path d="M8 9h8M8 13h8M8 17h5"/></svg>
       Pasti
     </button>
-    <button class="tab-btn" data-tab="settimana">
+    <button class="tab-item" data-tab="settimana">
       <svg viewBox="0 0 24 24"><rect x="3" y="4.5" width="18" height="16" rx="2.5"/><path d="M3 9.5h18M8 2.5v4M16 2.5v4"/></svg>
       Sett.
     </button>
-    <button class="tab-btn" data-tab="obiettivi">
+    <button class="tab-item" data-tab="obiettivi">
       <span class="tab-dot" id="goalsTabDot"></span>
       <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4.5"/><circle cx="12" cy="12" r="0.6" fill="currentColor"/></svg>
       Obiettivi
     </button>
-    <button class="tab-btn" data-tab="riferimenti">
+    <button class="tab-item" data-tab="riferimenti">
       <svg viewBox="0 0 24 24"><path d="M4 5a2 2 0 012-2h9l5 5v11a2 2 0 01-2 2H6a2 2 0 01-2-2z"/><path d="M15 3v5h5"/></svg>
       Piano
     </button>
   </nav>
 
+  <!-- ===== SHEET ===== -->
   <div class="sheet-overlay" id="sheetOverlay">
     <div class="sheet">
       <div class="sheet-handle"></div>
       <h3>Impostazioni</h3>
       <p style="margin-bottom:14px;">Personalizza l'app e gestisci i tuoi dati.</p>
-
-      <label for="nameInput" style="display:block;font-size:12.5px;font-weight:700;color:var(--text-soft);margin:0 0 6px;">Il tuo nome</label>
-      <input type="text" id="nameInput" placeholder="Es. Marco" autocomplete="off"
-        style="width:100%;padding:11px 12px;border:1.5px solid var(--line);border-radius:9px;font-size:14px;font-family:'Inter',sans-serif;margin-bottom:18px;background:var(--bg);color:var(--text);outline:none;">
-
+      <label style="display:block;font-size:12px;font-weight:700;color:var(--text-soft);margin:0 0 6px;">Il tuo nome</label>
+      <input type="text" id="nameInput" placeholder="Es. Marco" autocomplete="off">
       <p style="margin:0 0 10px;font-size:12.5px;color:var(--text-soft);">Esporta il tuo progresso o importa un salvataggio precedente.</p>
       <div class="data-actions">
         <button class="btn" id="exportBtn">Esporta dati (.json)</button>
-        <label for="importFile" class="btn ghost" style="cursor:pointer;">Importa dati</label>
+        <label for="importFile" class="btn btn-ghost" style="cursor:pointer;">Importa dati</label>
         <input type="file" id="importFile" accept=".json">
       </div>
     </div>
@@ -699,7 +1329,61 @@
 <div class="toast" id="toast"></div>
 
 <script>
-/* ================= DATI DEL PIANO ================= */
+/* ================= DATI ================= */
+const PREZZI = {
+  '40g avena (o cornflakes)':0.30,'40g farina di avena':0.25,'60g pane integrale':0.35,
+  '30g fette biscottate integrali (3 fette + marmellata, 3 cucchiaini rasi)':0.40,
+  '30g biscotti frollini (3 biscotti secchi - limitare)':0.30,
+  '60g pan bauletto integrale Mulino Bianco (2 fette)':0.50,
+  '40g gallette di riso integrali (4 gallette, o di mais)':0.35,
+  '40g Weetabix original (2 formelle)':0.40,
+  '400g yogurt bianco magro (1 tazza)':0.80,
+  '220g yogurt di soia Yosoi bianco (1 vasetto)':1.20,
+  '340g latte parz. scremato (1 tazza)':0.50,
+  '240g yogurt di latte intero (1 tazza)':0.70,
+  '510g bevanda a base di soia (1 tazza)':0.90,
+  '280g yogurt greco Fage Total 0% (1 vasetto)':1.50,
+  '290g kefir':1.20,
+  '220g ricotta magra (*o altro formaggio senza grassi)':1.80,
+  '120g uova di gallina (2 uova)':0.50,
+  '120g prosciutto cotto senza grasso (*o altro affettato magro)':2.00,
+  '150g frutta fresca (1 frutto)':0.60,
+  '20g crackers integrali Misura (mezzo pacchetto)':0.40,
+  '20g fette biscottate integrali (2 fette)':0.25,
+  '30g wasa integrali (3 wasa)':0.35,
+  '20g gallette di riso integrali (2 gallette)':0.20,
+  '120g yogurt di latte intero (1 vasetto)':0.70,
+  '20g barretta Hero light (1 barretta)':0.60,
+  '10g cioccolato extra fondente 85% Lindt (1 quadratino)':0.40,
+  '10g mandorle (*o altra frutta secca oleosa)':0.30,
+  '20g grana':0.50,
+  '60g pasta di semola (o riso/farro/orzo/cous cous)':0.30,
+  '170g gnocchi di patate':0.70,
+  '270g patate':0.50,
+  '90g pane integrale':0.50,
+  '260g piselli (*o altri legumi)':0.80,
+  '60g crackers integrali Misura (1 pacchetto e mezzo)':0.60,
+  '70g wasa original (7 wasa)':0.70,
+  '60g gallette di riso integrali (6 gallette)':0.50,
+  '150g petto di pollo (*o altra carne bianca)':2.50,
+  '80g salmone (*o altro pesce grasso)':3.00,
+  '140g pesce spada (*o altro pesce semigrasso)':3.50,
+  '180g spigola o branzino (*o altro pesce magro)':4.00,
+  '120g roast-beef di manzo, lombata (*o altro affettato magro)':3.00,
+  '110g bistecca di manzo (*o altra carne rossa magra)':3.50,
+  '90g tonno leggero Riomare (1 scatoletta grande)':1.80,
+  '200g ricotta magra (*o altro formaggio senza grassi)':1.80,
+  '100g ricotta di vacca (*o altro formaggio magro)':1.50,
+  '60g feta (*o altro formaggio semigrasso)':1.20,
+  '40g grana (*o altro formaggio grasso)':1.00,
+  '120g uova di gallina (2 uova)':0.50,
+  '120g burger vegetale Valsoia (1 burger e mezzo)':2.00,
+  '110g seitan al naturale':1.80,
+  '90g tempeh':1.50,
+  '190g tofu':1.80
+};
+const PREZZI_FISSI = {'Frutta fresca':0.60,'Caffè della moka':0.10,'Verdure o ortaggi':0.80,'Olio extravergine d\'oliva':0.20};
+
 const CEREALE_COLAZIONE = [
   "40g avena (o cornflakes)","40g farina di avena","60g pane integrale",
   "30g fette biscottate integrali (3 fette + marmellata, 3 cucchiaini rasi)",
@@ -707,7 +1391,6 @@ const CEREALE_COLAZIONE = [
   "40g gallette di riso integrali (4 gallette, o di mais)","40g Weetabix original (2 formelle)"
 ];
 const CEREALE_COLAZIONE_KCAL = [150,150,150,150,140,150,150,140];
-
 const PROTEINA_COLAZIONE = [
   "400g yogurt bianco magro (1 tazza)","220g yogurt di soia Yosoi bianco (1 vasetto)",
   "340g latte parz. scremato (1 tazza)","240g yogurt di latte intero (1 tazza)",
@@ -716,7 +1399,6 @@ const PROTEINA_COLAZIONE = [
   "120g uova di gallina (2 uova)","120g prosciutto cotto senza grasso (*o altro affettato magro)"
 ];
 const PROTEINA_COLAZIONE_KCAL = [140,90,115,150,130,105,110,100,140,95];
-
 const SPUNTINO_OPZIONI = [
   "150g frutta fresca (1 frutto)","20g crackers integrali Misura (mezzo pacchetto)",
   "20g fette biscottate integrali (2 fette)","30g wasa integrali (3 wasa)",
@@ -725,14 +1407,12 @@ const SPUNTINO_OPZIONI = [
   "10g mandorle (*o altra frutta secca oleosa)","20g grana"
 ];
 const SPUNTINO_OPZIONI_KCAL = [70,80,75,75,75,75,75,60,60,75];
-
 const CARBO_PRANZO_CENA = [
   "60g pasta di semola (o riso/farro/orzo/cous cous)","170g gnocchi di patate","270g patate",
   "90g pane integrale","260g piselli (*o altri legumi)","60g crackers integrali Misura (1 pacchetto e mezzo)",
   "70g wasa original (7 wasa)","60g gallette di riso integrali (6 gallette)"
 ];
 const CARBO_PRANZO_CENA_KCAL = [210,210,210,210,210,210,210,210];
-
 const PROTEINA_PRANZO_CENA = [
   "150g petto di pollo (*o altra carne bianca)","80g salmone (*o altro pesce grasso)",
   "140g pesce spada (*o altro pesce semigrasso)","180g spigola o branzino (*o altro pesce magro)",
@@ -745,27 +1425,27 @@ const PROTEINA_PRANZO_CENA = [
 const PROTEINA_PRANZO_CENA_KCAL = [165,180,150,155,180,175,120,140,170,150,160,140,190,140,155,150];
 
 const MEALS = [
-  {key:"colazione", label:"Colazione", icon:"sun",
+  {key:"colazione", label:"Colazione",
     components:[
       {key:"proteina", label:"Latticino / proteina", options:PROTEINA_COLAZIONE, kcal:PROTEINA_COLAZIONE_KCAL},
       {key:"cereale", label:"Cereale", options:CEREALE_COLAZIONE, kcal:CEREALE_COLAZIONE_KCAL},
     ],
     fixed:[{label:"Frutta fresca", qty:"150 g (1 frutto)", kcal:70},{label:"Caffè della moka", qty:"150 g (1 tazza)", kcal:5}],
     examples:[
-      "Yogurt greco (1 goccia di caffè per renderlo meno acido) + fette biscottate con marmellata + 1 kiwi",
-      "Latte parzialmente scremato + cornflakes + 1 mela",
-      "Pane integrale + fesa di tacchino/salmone affumicato + 1 pera",
+      "Yogurt greco + fette biscottate con marmellata + 1 kiwi",
+      "Latte + cornflakes + 1 mela",
+      "Pane integrale + fesa di tacchino + 1 pera",
       "Frittata + pane + 1 banana"
     ]},
-  {key:"spuntino1", label:"Spuntino mattina", icon:"apple", components:[{key:"scelta", label:"Scegli una opzione", options:SPUNTINO_OPZIONI, kcal:SPUNTINO_OPZIONI_KCAL}]},
-  {key:"pranzo", label:"Pranzo", icon:"plate",
+  {key:"spuntino1", label:"Spuntino mattina", components:[{key:"scelta", label:"Scegli una opzione", options:SPUNTINO_OPZIONI, kcal:SPUNTINO_OPZIONI_KCAL}]},
+  {key:"pranzo", label:"Pranzo",
     components:[
       {key:"carbo", label:"Carboidrato", options:CARBO_PRANZO_CENA, kcal:CARBO_PRANZO_CENA_KCAL},
       {key:"proteina", label:"Proteina", options:PROTEINA_PRANZO_CENA, kcal:PROTEINA_PRANZO_CENA_KCAL},
     ],
     fixed:[{label:"Verdure o ortaggi", qty:"200 g (porzione libera)", kcal:50},{label:"Olio extravergine d'oliva", qty:"10 g (1 cucchiaio)", kcal:90}]},
-  {key:"spuntino2", label:"Spuntino pomeriggio", icon:"apple", components:[{key:"scelta", label:"Scegli una opzione", options:SPUNTINO_OPZIONI, kcal:SPUNTINO_OPZIONI_KCAL}]},
-  {key:"cena", label:"Cena", icon:"moon",
+  {key:"spuntino2", label:"Spuntino pomeriggio", components:[{key:"scelta", label:"Scegli una opzione", options:SPUNTINO_OPZIONI, kcal:SPUNTINO_OPZIONI_KCAL}]},
+  {key:"cena", label:"Cena",
     components:[
       {key:"carbo", label:"Carboidrato", options:CARBO_PRANZO_CENA, kcal:CARBO_PRANZO_CENA_KCAL},
       {key:"proteina", label:"Proteina", options:PROTEINA_PRANZO_CENA, kcal:PROTEINA_PRANZO_CENA_KCAL},
@@ -784,681 +1464,243 @@ const WEEKLY_GOALS = [
   {key:"sfizio", label:"Sfizio settimanale concesso", icon:"star"},
   {key:"alcol", label:"Max 1 birra piccola / bicchiere di vino", icon:"glass"}
 ];
-
 const GOAL_ICONS = {
-  scale: '<path d="M12 3v18M4 7h16M6 7l-3 8a4 4 0 008 0l-3-8M18 7l-3 8a4 4 0 008 0l-3-8"/>',
-  drop: '<path d="M12 2.5S5 11 5 15.5a7 7 0 0014 0C19 11 12 2.5 12 2.5z"/>',
-  'moon-goal': '<path d="M20 14.5A8.5 8.5 0 119.5 4a7 7 0 0010.5 10.5z"/>',
-  walk: '<circle cx="13" cy="4.5" r="1.7"/><path d="M9 21l2-6 2 2 3 1M8 13l2-4 3 1 2 3v4"/>',
-  star: '<path d="M12 3l2.6 5.6 6.1.6-4.6 4.1 1.3 6-5.4-3.1L6.6 19.3l1.3-6-4.6-4.1 6.1-.6z"/>',
-  glass: '<path d="M6 3h12l-2 12a4 4 0 01-8 0L6 3z"/><path d="M9 21h6M12 15v6"/>'
+  scale:'<path d="M12 3v18M4 7h16M6 7l-3 8a4 4 0 008 0l-3-8M18 7l-3 8a4 4 0 008 0l-3-8"/>',
+  drop:'<path d="M12 2.5S5 11 5 15.5a7 7 0 0014 0C19 11 12 2.5 12 2.5z"/>',
+  'moon-goal':'<path d="M20 14.5A8.5 8.5 0 119.5 4a7 7 0 0010.5 10.5z"/>',
+  walk:'<circle cx="13" cy="4.5" r="1.7"/><path d="M9 21l2-6 2 2 3 1M8 13l2-4 3 1 2 3v4"/>',
+  star:'<path d="M12 3l2.6 5.6 6.1.6-4.6 4.1 1.3 6-5.4-3.1L6.6 19.3l1.3-6-4.6-4.1 6.1-.6z"/>',
+  glass:'<path d="M6 3h12l-2 12a4 4 0 01-8 0L6 3z"/><path d="M9 21h6M12 15v6"/>'
 };
-
-const WEEK_DAYS = [
-  {key:"lun", label:"Lunedì"},
-  {key:"mar", label:"Martedì"},
-  {key:"mer", label:"Mercoledì"},
-  {key:"gio", label:"Giovedì"},
-  {key:"ven", label:"Venerdì"},
-  {key:"sab", label:"Sabato"},
-  {key:"dom", label:"Domenica"}
-];
-// JS getDay(): 0=Domenica...6=Sabato -> mappiamo sulle chiavi sopra
+const WEEK_DAYS = [{key:"lun",label:"Lunedì"},{key:"mar",label:"Martedì"},{key:"mer",label:"Mercoledì"},{key:"gio",label:"Giovedì"},{key:"ven",label:"Venerdì"},{key:"sab",label:"Sabato"},{key:"dom",label:"Domenica"}];
 const JS_DAY_TO_KEY = ["dom","lun","mar","mer","gio","ven","sab"];
-function todayKey(){ return JS_DAY_TO_KEY[new Date().getDay()]; }
-function todayDateStr(){ return new Date().toISOString().slice(0,10); }
+function todayKey(){return JS_DAY_TO_KEY[new Date().getDay()];}
+function todayDateStr(){return new Date().toISOString().slice(0,10);}
 
 /* ================= STATO ================= */
-const STORAGE_KEY = 'pianoAlimentare_state_v2';
-
-let state = { selections:{}, completed:{}, daily:{}, weekly:{}, weeklyMenu:{}, userName:'', lastAutoLoadDate:'' };
-let celebrated = false;
+const STORAGE_KEY='pianoAlimentare_v4';
+let state={selections:{},completed:{},daily:{},weekly:{},weeklyMenu:{},userName:'',lastAutoLoadDate:''};
+let celebrated=false;
 
 function ensureStateShape(){
-  MEALS.forEach(m=>{
-    if(!state.selections[m.key]) state.selections[m.key] = {};
-    if(state.completed[m.key] === undefined) state.completed[m.key] = false;
-  });
-  DAILY_GOALS.forEach(g=>{
-    if(state.daily[g.key] === undefined) state.daily[g.key] = false;
-  });
-  WEEKLY_GOALS.forEach(g=>{
-    if(state.weekly[g.key] === undefined) state.weekly[g.key] = false;
-  });
-  WEEK_DAYS.forEach(d=>{
-    if(!state.weeklyMenu[d.key]) state.weeklyMenu[d.key] = {};
-    MEALS.forEach(m=>{
-      if(!state.weeklyMenu[d.key][m.key]) state.weeklyMenu[d.key][m.key] = {};
-    });
-  });
-  if(typeof state.lastAutoLoadDate !== 'string') state.lastAutoLoadDate = '';
+  MEALS.forEach(m=>{if(!state.selections[m.key])state.selections[m.key]={};if(state.completed[m.key]===undefined)state.completed[m.key]=false;});
+  DAILY_GOALS.forEach(g=>{if(state.daily[g.key]===undefined)state.daily[g.key]=false;});
+  WEEKLY_GOALS.forEach(g=>{if(state.weekly[g.key]===undefined)state.weekly[g.key]=false;});
+  WEEK_DAYS.forEach(d=>{if(!state.weeklyMenu[d.key])state.weeklyMenu[d.key]={};MEALS.forEach(m=>{if(!state.weeklyMenu[d.key][m.key])state.weeklyMenu[d.key][m.key]={};});});
+  if(typeof state.lastAutoLoadDate!=='string')state.lastAutoLoadDate='';
 }
-
 function loadState(){
-  try{
-    const raw = localStorage.getItem(STORAGE_KEY);
-    if(raw){
-      const data = JSON.parse(raw);
-      if(data.selections) state.selections = data.selections;
-      if(data.completed) state.completed = data.completed;
-      if(data.daily) state.daily = data.daily;
-      if(data.weekly) state.weekly = data.weekly;
-      if(data.weeklyMenu) state.weeklyMenu = data.weeklyMenu;
-      if(typeof data.userName === 'string') state.userName = data.userName;
-      if(typeof data.lastAutoLoadDate === 'string') state.lastAutoLoadDate = data.lastAutoLoadDate;
-    }
-  }catch(e){
-    // Nessun salvataggio trovato ancora: si parte con lo stato di default
-  }
+  try{const raw=localStorage.getItem(STORAGE_KEY);if(raw){const data=JSON.parse(raw);if(data.selections)state.selections=data.selections;if(data.completed)state.completed=data.completed;if(data.daily)state.daily=data.daily;if(data.weekly)state.weekly=data.weekly;if(data.weeklyMenu)state.weeklyMenu=data.weeklyMenu;if(typeof data.userName==='string')state.userName=data.userName;if(typeof data.lastAutoLoadDate==='string')state.lastAutoLoadDate=data.lastAutoLoadDate;}}catch(e){}
   ensureStateShape();
 }
-
-function saveState(){
-  try{
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
-  }catch(e){
-    console.error('Impossibile salvare i dati', e);
-    showToast('Impossibile salvare i dati, riprova');
-  }
-}
-
-// Copia i pasti del menù settimanale su "Oggi" SOLO la prima volta che si apre
-// l'app in un dato giorno, per non sovrascrivere scelte fatte manualmente dopo.
+function saveState(){try{localStorage.setItem(STORAGE_KEY,JSON.stringify(state));}catch(e){showToast('Impossibile salvare');}}
 function autoLoadTodayFromWeek(){
-  const today = todayKey();
-  const todayDate = todayDateStr();
-  if(state.lastAutoLoadDate === todayDate) return false; // già fatto oggi
-
-  const todayMenu = state.weeklyMenu[today];
-  if(!todayMenu) { state.lastAutoLoadDate = todayDate; return false; }
-
-  let hasData = false;
-  MEALS.forEach(m=>{
-    const dayMeal = todayMenu[m.key];
-    if(dayMeal && Object.keys(dayMeal).length > 0){
-      const hasSelection = Object.values(dayMeal).some(v => v !== '' && v !== undefined && v !== null);
-      if(hasSelection) hasData = true;
-    }
-  });
-
-  state.lastAutoLoadDate = todayDate;
-  if(!hasData) return false;
-
-  MEALS.forEach(m=>{
-    state.selections[m.key] = JSON.parse(JSON.stringify(todayMenu[m.key] || {}));
-  });
-
+  const today=todayKey(),todayDate=todayDateStr();
+  if(state.lastAutoLoadDate===todayDate)return false;
+  const todayMenu=state.weeklyMenu[today];
+  if(!todayMenu){state.lastAutoLoadDate=todayDate;return false;}
+  let hasData=false;
+  MEALS.forEach(m=>{const dm=todayMenu[m.key];if(dm&&Object.keys(dm).length>0){const hs=Object.values(dm).some(v=>v!==''&&v!==undefined&&v!==null);if(hs)hasData=true;}});
+  state.lastAutoLoadDate=todayDate;
+  if(!hasData)return false;
+  MEALS.forEach(m=>{state.selections[m.key]=JSON.parse(JSON.stringify(todayMenu[m.key]||{}));});
   return true;
 }
 
-/* ================= HEADER: saluto + data ================= */
+/* ================= RENDER ================= */
 function renderHeader(){
-  const now = new Date();
-  const h = now.getHours();
-  const greetBase = h < 6 ? "Buonanotte" : h < 12 ? "Buongiorno" : h < 18 ? "Buon pomeriggio" : "Buonasera";
-  document.getElementById('greeting').textContent = greetBase;
-  const nameEl = document.getElementById('greetingName');
-  nameEl.textContent = state.userName || '';
-  nameEl.style.display = state.userName ? 'block' : 'none';
-  const dateStr = now.toLocaleDateString('it-IT', {weekday:'long', day:'numeric', month:'long'});
-  document.getElementById('dateLabel').textContent = dateStr.charAt(0).toUpperCase()+dateStr.slice(1);
+  const now=new Date(),h=now.getHours();
+  const g=h<6?"Buonanotte":h<12?"Buongiorno":h<18?"Buon pomeriggio":"Buonasera";
+  document.getElementById('greeting').textContent=g;
+  const ne=document.getElementById('greetingName');
+  ne.textContent=state.userName||'';
+  ne.style.display=state.userName?'block':'none';
+  const ds=now.toLocaleDateString('it-IT',{weekday:'long',day:'numeric',month:'long'});
+  document.getElementById('dateLabel').textContent=ds.charAt(0).toUpperCase()+ds.slice(1);
 }
-
-/* ================= RING ================= */
-const RADIUS = 60, CIRC = 2*Math.PI*RADIUS;
+const RADIUS=56,CIRC=2*Math.PI*RADIUS;
 function renderRing(){
-  const total = MEALS.length;
-  const done = MEALS.filter(m=>state.completed[m.key]).length;
-  const fill = document.getElementById('ringFill');
-  fill.style.strokeDasharray = CIRC;
-  fill.style.strokeDashoffset = CIRC*(1-done/total);
-  fill.classList.toggle('full', done===total);
-  document.getElementById('ringNum').textContent = `${done}/${total}`;
-
-  if(done===total && !celebrated){
-    celebrated = true;
-    spawnConfetti();
-    showToast('Giornata completata! 🎉');
-  }
-  if(done<total) celebrated = false;
+  const total=MEALS.length,done=MEALS.filter(m=>state.completed[m.key]).length;
+  const fill=document.getElementById('ringFill');
+  fill.style.strokeDasharray=CIRC;
+  fill.style.strokeDashoffset=CIRC*(1-done/total);
+  fill.classList.toggle('complete',done===total);
+  document.getElementById('ringNum').textContent=`${done}/${total}`;
+  if(done===total&&!celebrated){celebrated=true;spawnConfetti();showToast('Giornata completata! 🎉');}
+  if(done<total)celebrated=false;
 }
-
 function spawnConfetti(){
-  if(window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-  const wrap = document.getElementById('ringWrap');
-  const colors = ['#3C8562','#E8A33D','#D2603F','#2C6249'];
-  for(let i=0;i<18;i++){
-    const dot = document.createElement('div');
-    dot.className = 'confetti';
-    const angle = Math.random()*Math.PI*2;
-    const dist = 60 + Math.random()*50;
-    dot.style.setProperty('--tx', Math.cos(angle)*dist+'px');
-    dot.style.setProperty('--ty', Math.sin(angle)*dist+'px');
-    dot.style.background = colors[i%colors.length];
-    dot.style.left = '50%'; dot.style.top = '38%';
-    wrap.appendChild(dot);
-    setTimeout(()=>dot.remove(), 950);
-  }
+  if(window.matchMedia('(prefers-reduced-motion:reduce)').matches)return;
+  const wrap=document.getElementById('ringWrap'),colors=['#2A8B5A','#D9902E','#D65A4A','#1A6B48'];
+  for(let i=0;i<16;i++){const dot=document.createElement('div');dot.className='confetti';const a=Math.random()*Math.PI*2,d=45+Math.random()*50;dot.style.setProperty('--tx',Math.cos(a)*d+'px');dot.style.setProperty('--ty',Math.sin(a)*d+'px');dot.style.background=colors[i%colors.length];dot.style.left='50%';dot.style.top='36%';wrap.appendChild(dot);setTimeout(()=>dot.remove(),900);}
 }
-
-/* ================= KCAL ================= */
-// Calcola le kcal stimate per un pasto in base alle selezioni correnti.
-// Gli elementi "fissi" (frutta, olio, verdure, caffè...) vengono contati
-// solo se il pasto ha almeno una scelta fatta, perché fanno parte del pasto stesso.
-function mealKcal(meal, selections){
-  let total = 0;
-  let anySelected = false;
-  meal.components.forEach(c=>{
-    const idx = selections[c.key];
-    if(idx !== undefined && idx !== '' && idx !== null){
-      const n = Number(idx);
-      if(!Number.isNaN(n) && c.kcal && c.kcal[n] !== undefined){
-        total += c.kcal[n];
-        anySelected = true;
-      }
-    }
+function getPrezzo(t){if(PREZZI[t]!==undefined)return PREZZI[t];for(const[k,v]of Object.entries(PREZZI)){if(t.includes(k.replace(/\(.*\)/,'').trim())||k.includes(t.replace(/\(.*\)/,'').trim()))return v;}return 0.50;}
+function mealKcalCost(meal,sel){
+  let k=0,c=0,any=false;
+  meal.components.forEach(comp=>{
+    const idx=sel[comp.key];
+    if(idx!==undefined&&idx!==''&&idx!==null){const n=Number(idx);if(!isNaN(n)&&comp.kcal&&comp.kcal[n]!==undefined){k+=comp.kcal[n];c+=getPrezzo(comp.options[n]);any=true;}}
   });
-  if(anySelected && meal.fixed){
-    meal.fixed.forEach(f=>{ total += (f.kcal || 0); });
-  }
-  return { total, anySelected };
+  if(any&&meal.fixed){meal.fixed.forEach(f=>{k+=f.kcal||0;if(PREZZI_FISSI[f.label]!==undefined)c+=PREZZI_FISSI[f.label];});}
+  return{k,c,any};
 }
-
-function totalDayKcal(){
-  let total = 0;
-  MEALS.forEach(m=>{
-    const {total: mt} = mealKcal(m, state.selections[m.key]);
-    total += mt;
-  });
-  return total;
+function totalDay(){let k=0,c=0;MEALS.forEach(m=>{const r=mealKcalCost(m,state.selections[m.key]);k+=r.k;c+=r.c;});return{k,c};}
+function renderKcal(){
+  const el=document.getElementById('kcalTotalValue'),ce=document.getElementById('dailyCostBadge');
+  if(!el||!ce)return;const{k,c}=totalDay();
+  el.innerHTML=`${k}<small>kcal</small>`;
+  ce.textContent=`€ ${c.toFixed(2)}`;
 }
-
-function renderKcalSummary(){
-  const el = document.getElementById('kcalTotalValue');
-  if(!el) return;
-  const total = totalDayKcal();
-  el.innerHTML = `${total}<span>kcal</span>`;
-}
-
-/* ================= TODAY LIST (tab Oggi) ================= */
-function summarizeMeal(meal){
-  const sel = state.selections[meal.key];
-  const parts = meal.components.map(c=>{
-    const idx = sel[c.key];
-    if(idx===undefined || idx==='') return null;
-    return c.options[idx];
-  }).filter(Boolean);
-  return parts.join(' · ');
-}
-
-function renderTodayList(){
-  const el = document.getElementById('todayList');
-  el.innerHTML = '';
+function summarize(meal){const sel=state.selections[meal.key];return meal.components.map(c=>{const idx=sel[c.key];return idx!==undefined&&idx!==''?c.options[idx]:null;}).filter(Boolean).join(' · ');}
+function renderToday(){
+  const el=document.getElementById('todayList');el.innerHTML='';
   MEALS.forEach(meal=>{
-    const summary = summarizeMeal(meal);
-    const {total: mealTotalKcal, anySelected} = mealKcal(meal, state.selections[meal.key]);
-    const row = document.createElement('div');
-    row.className = 'meal-row';
-    row.innerHTML = `
-      <button class="meal-check ${state.completed[meal.key]?'done':''}" data-meal="${meal.key}" aria-label="Segna ${meal.label} completato">
+    const sum=summarize(meal),{k,c,any}=mealKcalCost(meal,state.selections[meal.key]);
+    const row=document.createElement('div');row.className='meal-row';
+    row.innerHTML=`
+      <button class="meal-check ${state.completed[meal.key]?'done':''}" data-meal="${meal.key}">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7"/></svg>
       </button>
       <div class="meal-info">
-        <div class="name">${meal.label}</div>
-        <div class="detail-row">
-          <div class="detail ${summary?'':'empty'}">${summary || 'Nessuna scelta ancora'}</div>
-          ${anySelected ? `<span class="kcal-badge">~${mealTotalKcal} kcal</span>` : ''}
+        <div class="meal-name">${meal.label}</div>
+        <div class="meal-meta">
+          <span class="meal-detail ${sum?'':'empty'}">${sum||'Nessuna scelta ancora'}</span>
+          ${any?`<span class="badge-kcal">~${k} kcal</span>`:''}
+          ${any?`<span class="badge-cost">€ ${c.toFixed(2)}</span>`:''}
         </div>
       </div>
-      <button class="goto-btn" data-goto="${meal.key}">Scegli</button>`;
+      <button class="meal-goto" data-goto="${meal.key}">Scegli</button>`;
     el.appendChild(row);
   });
-
-  el.querySelectorAll('.meal-check').forEach(btn=>{
-    btn.addEventListener('click', ()=>{
-      const k = btn.dataset.meal;
-      state.completed[k] = !state.completed[k];
-      saveState();
-      renderTodayList(); renderMealsDetail(); renderRing();
-    });
-  });
-  el.querySelectorAll('.goto-btn').forEach(btn=>{
-    btn.addEventListener('click', ()=>{
-      switchTab('pasti');
-      setTimeout(()=>{
-        const target = document.getElementById('meal-'+btn.dataset.goto);
-        if(target) target.scrollIntoView({behavior:'smooth', block:'start'});
-      }, 60);
-    });
-  });
+  el.querySelectorAll('.meal-check').forEach(b=>{b.addEventListener('click',()=>{const k=b.dataset.meal;state.completed[k]=!state.completed[k];saveState();renderToday();renderMeals();renderRing();renderKcal();});});
+  el.querySelectorAll('.meal-goto').forEach(b=>{b.addEventListener('click',()=>{switchTab('pasti');setTimeout(()=>{const t=document.getElementById('meal-'+b.dataset.goto);if(t)t.scrollIntoView({behavior:'smooth',block:'center'});},80);});});
 }
-
-/* ================= MEALS DETAIL (tab Pasti) ================= */
-function renderMealsDetail(){
-  const container = document.getElementById('mealsContainer');
-  container.innerHTML = '';
+function renderMeals(){
+  const c=document.getElementById('mealsContainer');c.innerHTML='';
   MEALS.forEach(meal=>{
-    const card = document.createElement('div');
-    card.className = 'meal-detail' + (state.completed[meal.key] ? ' done':'');
-    card.id = 'meal-'+meal.key;
-
-    const {total: mealTotalKcal, anySelected} = mealKcal(meal, state.selections[meal.key]);
-
-    const head = document.createElement('div');
-    head.className = 'meal-detail-head';
-    head.innerHTML = `<h3>${meal.label}</h3>
-      <div class="head-right">
-        ${anySelected ? `<span class="kcal-badge">~${mealTotalKcal} kcal</span>` : ''}
-        ${state.completed[meal.key] ? '<span class="meal-badge mono">✓ fatto</span>' : ''}
-      </div>`;
+    const card=document.createElement('div');card.className='meal-detail-card'+(state.completed[meal.key]?' done':'');card.id='meal-'+meal.key;
+    const{k,cost,any}=mealKcalCost(meal,state.selections[meal.key]);
+    const head=document.createElement('div');head.className='meal-header';
+    head.innerHTML=`<h3>${meal.label}</h3><div class="meal-header-right">${any?`<span class="badge-kcal">~${k} kcal</span>`:''}${any?`<span class="badge-cost">€ ${cost.toFixed(2)}</span>`:''}${state.completed[meal.key]?'<span class="badge-done">✓ fatto</span>':''}</div>`;
     card.appendChild(head);
-
-    const body = document.createElement('div');
-    body.className = 'meal-detail-body';
-
+    const body=document.createElement('div');body.className='meal-body';
     meal.components.forEach(comp=>{
-      const wrap = document.createElement('div');
-      wrap.className = 'component';
-      const sel = state.selections[meal.key][comp.key] ?? '';
-      let optionsHtml = `<option value="">Seleziona...</option>`;
-      comp.options.forEach((opt,i)=>{
-        const kcalTxt = comp.kcal && comp.kcal[i] !== undefined ? ` — ~${comp.kcal[i]} kcal` : '';
-        optionsHtml += `<option value="${i}" ${String(i)===String(sel)?'selected':''}>${opt}${kcalTxt}</option>`;
-      });
-      wrap.innerHTML = `<label class="comp-label">${comp.label}</label>
-        <select data-meal="${meal.key}" data-comp="${comp.key}">${optionsHtml}</select>`;
-      body.appendChild(wrap);
+      const w=document.createElement('div');w.className='meal-comp';
+      const sel=state.selections[meal.key][comp.key]??'';
+      let opt=`<option value="">Seleziona...</option>`;
+      comp.options.forEach((o,i)=>{const kt=comp.kcal&&comp.kcal[i]!==undefined?` — ~${comp.kcal[i]} kcal`:'';const pt=getPrezzo(o)>0?` € ${getPrezzo(o).toFixed(2)}`:'';opt+=`<option value="${i}" ${String(i)===String(sel)?'selected':''}>${o}${kt}${pt}</option>`;});
+      w.innerHTML=`<span class="meal-comp-label">${comp.label}</span><select data-meal="${meal.key}" data-comp="${comp.key}">${opt}</select>`;
+      body.appendChild(w);
     });
-
-    if(meal.fixed){
-      meal.fixed.forEach(f=>{
-        const fx = document.createElement('div');
-        fx.className = 'component';
-        const kcalTxt = f.kcal !== undefined ? ` · ~${f.kcal} kcal` : '';
-        fx.innerHTML = `<label class="comp-label">${f.label}</label>
-          <div class="fixed-item"><span>${f.label}</span><span class="qty mono">${f.qty}${kcalTxt}</span></div>`;
-        body.appendChild(fx);
-      });
-    }
-
-    const toggleRow = document.createElement('div');
-    toggleRow.className = 'complete-toggle-row';
-    toggleRow.innerHTML = `<span>Pasto completato</span>
-      <label class="switch"><input type="checkbox" class="mealDoneToggle" data-meal="${meal.key}" ${state.completed[meal.key]?'checked':''}><span class="slider"></span></label>`;
-    body.appendChild(toggleRow);
-
-    if(meal.examples){
-      const ex = document.createElement('details');
-      ex.className = 'examples';
-      ex.innerHTML = `<summary>Esempi di combinazione</summary><ul>${meal.examples.map(e=>`<li>${e}</li>`).join('')}</ul>`;
-      body.appendChild(ex);
-    }
-
-    card.appendChild(body);
-    container.appendChild(card);
+    if(meal.fixed){meal.fixed.forEach(f=>{const fx=document.createElement('div');fx.className='meal-comp';const p=PREZZI_FISSI[f.label]||0;const kt=f.kcal!==undefined?` · ~${f.kcal} kcal`:'';fx.innerHTML=`<span class="meal-comp-label">${f.label}</span><div class="meal-fixed"><span>${f.label}</span><span class="qty mono">${f.qty}${kt} · € ${p.toFixed(2)}</span></div>`;body.appendChild(fx);});}
+    const tog=document.createElement('div');tog.className='meal-toggle';
+    tog.innerHTML=`<span>Pasto completato</span><label class="switch"><input type="checkbox" class="mealDoneToggle" data-meal="${meal.key}" ${state.completed[meal.key]?'checked':''}><span class="slider"></span></label>`;
+    body.appendChild(tog);
+    if(meal.examples){const ex=document.createElement('details');ex.className='examples-details';ex.innerHTML=`<summary>Esempi di combinazione</summary><ul>${meal.examples.map(e=>`<li>${e}</li>`).join('')}</ul>`;body.appendChild(ex);}
+    card.appendChild(body);c.appendChild(card);
   });
-
-  container.querySelectorAll('select').forEach(sel=>{
-    sel.addEventListener('change', e=>{
-      const {meal, comp} = e.target.dataset;
-      state.selections[meal][comp] = e.target.value;
-      saveState();
-      renderTodayList();
-      renderMealsDetail();
-      renderKcalSummary();
-    });
-  });
-  container.querySelectorAll('.mealDoneToggle').forEach(t=>{
-    t.addEventListener('change', e=>{
-      state.completed[e.target.dataset.meal] = e.target.checked;
-      saveState();
-      renderMealsDetail(); renderTodayList(); renderRing();
-    });
-  });
+  c.querySelectorAll('select').forEach(s=>{s.addEventListener('change',e=>{const{meal,comp}=e.target.dataset;state.selections[meal][comp]=e.target.value;saveState();renderToday();renderMeals();renderKcal();});});
+  c.querySelectorAll('.mealDoneToggle').forEach(t=>{t.addEventListener('change',e=>{state.completed[e.target.dataset.meal]=e.target.checked;saveState();renderMeals();renderToday();renderRing();renderKcal();});});
 }
-
-/* ================= MENU SETTIMANALE (tab Settimana) ================= */
-function renderWeekMenu(){
-  const container = document.getElementById('weekMenuContainer');
-  container.innerHTML = '';
-
-  const actions = document.createElement('div');
-  actions.className = 'week-actions';
-  actions.innerHTML = `<button class="btn ghost" id="clearWeekMenuBtn">Svuota menù settimanale</button>`;
-  container.appendChild(actions);
-
-  const tKey = todayKey();
-
+function renderWeek(){
+  const container=document.getElementById('weekMenuContainer');container.innerHTML='';
+  const actions=document.createElement('div');actions.className='week-actions-bar';actions.innerHTML=`<button class="btn btn-ghost" id="clearWeekBtn">Svuota menù</button>`;container.appendChild(actions);
+  const tKey=todayKey();
   WEEK_DAYS.forEach(day=>{
-    const isToday = day.key === tKey;
-    const card = document.createElement('details');
-    card.className = 'day-card' + (isToday ? ' is-today':'');
-    card.open = isToday;
-
-    const summary = document.createElement('summary');
-    summary.innerHTML = `
-      <div class="day-title-wrap">
-        <h3>${day.label}</h3>
-        ${isToday ? '<span class="day-today-badge">Oggi</span>' : ''}
-      </div>
-      <span class="day-chevron"><svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></span>`;
-    card.appendChild(summary);
-
-    const body = document.createElement('div');
-    body.className = 'day-card-body';
-
+    const isToday=day.key===tKey;const card=document.createElement('details');card.className='week-card'+(isToday?' today':'');card.open=isToday;
+    let dayCost=0,dayHas=false;
+    MEALS.forEach(meal=>{let mc=0,mh=false;meal.components.forEach(comp=>{const sel=state.weeklyMenu[day.key][meal.key][comp.key];if(sel!==undefined&&sel!==''&&sel!==null){const idx=Number(sel);if(!isNaN(idx)&&comp.options[idx]){mc+=getPrezzo(comp.options[idx]);mh=true;}}});if(mh&&meal.fixed){meal.fixed.forEach(f=>{if(PREZZI_FISSI[f.label]!==undefined)mc+=PREZZI_FISSI[f.label];});}if(mh)dayHas=true;dayCost+=mc;});
+    const sum=document.createElement('summary');
+    sum.innerHTML=`<div class="week-summary-left"><h3>${day.label}</h3>${isToday?'<span class="week-today">Oggi</span>':''}${dayHas?`<span class="badge-cost" style="font-size:9px;">€ ${dayCost.toFixed(2)}</span>`:''}</div><span class="week-chevron"><svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></span>`;
+    card.appendChild(sum);
+    const body=document.createElement('div');body.className='week-body';
     MEALS.forEach(meal=>{
-      const block = document.createElement('div');
-      block.className = 'day-meal-block';
-      let inner = `<h4>${meal.label}</h4>`;
+      const block=document.createElement('div');block.className='week-meal';
+      let inner=`<h4>${meal.label}</h4>`;
       meal.components.forEach(comp=>{
-        const sel = state.weeklyMenu[day.key][meal.key][comp.key] ?? '';
-        let optionsHtml = `<option value="">Seleziona...</option>`;
-        comp.options.forEach((opt,i)=>{
-          const kcalTxt = comp.kcal && comp.kcal[i] !== undefined ? ` — ~${comp.kcal[i]} kcal` : '';
-          optionsHtml += `<option value="${i}" ${String(i)===String(sel)?'selected':''}>${opt}${kcalTxt}</option>`;
-        });
-        inner += `<div class="component">
-          <label class="comp-label">${comp.label}</label>
-          <select data-day="${day.key}" data-meal="${meal.key}" data-comp="${comp.key}">${optionsHtml}</select>
-        </div>`;
+        const sel=state.weeklyMenu[day.key][meal.key][comp.key]??'';
+        let opt=`<option value="">Seleziona...</option>`;
+        comp.options.forEach((o,i)=>{const kt=comp.kcal&&comp.kcal[i]!==undefined?` — ~${comp.kcal[i]} kcal`:'';const pt=getPrezzo(o)>0?` € ${getPrezzo(o).toFixed(2)}`:'';opt+=`<option value="${i}" ${String(i)===String(sel)?'selected':''}>${o}${kt}${pt}</option>`;});
+        inner+=`<div class="meal-comp"><span class="meal-comp-label">${comp.label}</span><select data-day="${day.key}" data-meal="${meal.key}" data-comp="${comp.key}">${opt}</select></div>`;
       });
-      if(meal.fixed){
-        inner += `<div class="day-meal-fixed-note">+ ${meal.fixed.map(f=>`${f.label} (${f.qty})`).join(' · ')}</div>`;
-      }
-      block.innerHTML = inner;
-      body.appendChild(block);
+      if(meal.fixed){const parts=meal.fixed.map(f=>{const p=PREZZI_FISSI[f.label]||0;return `${f.label} (${f.qty}) · € ${p.toFixed(2)}`;});inner+=`<div class="week-fixed-note">+ ${parts.join(' · ')}</div>`;}
+      block.innerHTML=inner;body.appendChild(block);
     });
-
-    const useBtn = document.createElement('button');
-    useBtn.className = 'use-today-btn';
-    useBtn.dataset.day = day.key;
-    useBtn.innerHTML = `<svg viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg> Usa questo giorno per "Oggi"`;
-    body.appendChild(useBtn);
-
-    card.appendChild(body);
-    container.appendChild(card);
+    const useBtn=document.createElement('button');useBtn.className='week-use-btn';useBtn.dataset.day=day.key;
+    useBtn.innerHTML=`<svg viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg> Usa questo giorno per "Oggi"`;
+    body.appendChild(useBtn);card.appendChild(body);container.appendChild(card);
   });
-
-  container.querySelectorAll('select').forEach(sel=>{
-    sel.addEventListener('change', e=>{
-      const {day, meal, comp} = e.target.dataset;
-      state.weeklyMenu[day][meal][comp] = e.target.value;
-      saveState();
-    });
-  });
-
-  container.querySelectorAll('.use-today-btn').forEach(btn=>{
-    btn.addEventListener('click', ()=>{
-      const dayKey = btn.dataset.day;
-      const dayLabel = WEEK_DAYS.find(d=>d.key===dayKey).label;
-      MEALS.forEach(m=>{
-        state.selections[m.key] = JSON.parse(JSON.stringify(state.weeklyMenu[dayKey][m.key] || {}));
-      });
-      saveState();
-      renderTodayList();
-      renderMealsDetail();
-      renderKcalSummary();
-      switchTab('oggi');
-      showToast(`Pasti di ${dayLabel} applicati a "Oggi"`);
-    });
-  });
-
-  document.getElementById('clearWeekMenuBtn').addEventListener('click', ()=>{
-    if(!confirm('Svuotare tutto il menù settimanale pianificato? Questa azione non può essere annullata.')) return;
-    WEEK_DAYS.forEach(d=>{
-      MEALS.forEach(m=>{ state.weeklyMenu[d.key][m.key] = {}; });
-    });
-    saveState();
-    renderWeekMenu();
-    showToast('Menù settimanale svuotato');
-  });
+  container.querySelectorAll('select').forEach(s=>{s.addEventListener('change',e=>{const{day,meal,comp}=e.target.dataset;state.weeklyMenu[day][meal][comp]=e.target.value;saveState();renderWeek();});});
+  container.querySelectorAll('.week-use-btn').forEach(b=>{b.addEventListener('click',()=>{const dk=b.dataset.day,dl=WEEK_DAYS.find(d=>d.key===dk).label;MEALS.forEach(m=>{state.selections[m.key]=JSON.parse(JSON.stringify(state.weeklyMenu[dk][m.key]||{}));});saveState();renderToday();renderMeals();renderKcal();switchTab('oggi');showToast(`Pasti di ${dl} applicati a "Oggi"`);});});
+  document.getElementById('clearWeekBtn').addEventListener('click',()=>{if(!confirm('Svuotare il menù settimanale?'))return;WEEK_DAYS.forEach(d=>{MEALS.forEach(m=>{state.weeklyMenu[d.key][m.key]={};});});saveState();renderWeek();showToast('Menù svuotato');});
 }
-
-/* ================= OBIETTIVI ================= */
-const DAILY_NOTES = [
-  "Comincia a spuntare i tuoi obiettivi di oggi.",
-  "Ci sei quasi, continua così!",
-  "Ottimo lavoro, sei a metà strada.",
-  "Ultimo sforzo, sei quasi al completo!",
-  "Giornata perfetta! Tutti gli obiettivi raggiunti 🎉"
-];
-const WEEKLY_NOTES = [
-  "Un passo alla volta, questa settimana.",
-  "Bel ritmo, continua a spuntare gli obiettivi.",
-  "Sei a buon punto con la settimana.",
-  "Ci siamo quasi, manca poco!",
-  "Settimana completata, ottimo lavoro! 🎉"
-];
-
-function renderGoalProgress(goals, state_, countEl, fillEl, noteEl, notes){
-  const total = goals.length;
-  const done = goals.filter(g=>state_[g.key]).length;
-  document.getElementById(countEl).textContent = `${done}/${total}`;
-  const fill = document.getElementById(fillEl);
-  const pct = total ? Math.round((done/total)*100) : 0;
-  fill.style.width = pct + '%';
-  fill.classList.toggle('full', done===total && total>0);
-  const noteIdx = total>0 ? Math.min(done, notes.length-1) : 0;
-  document.getElementById(noteEl).textContent = notes[noteIdx];
+const DAILY_NOTES=["Comincia a spuntare i tuoi obiettivi di oggi.","Ci sei quasi, continua così!","Ottimo lavoro, sei a metà strada.","Ultimo sforzo, sei quasi al completo!","Giornata perfetta! Tutti gli obiettivi raggiunti 🎉"];
+const WEEKLY_NOTES=["Un passo alla volta, questa settimana.","Bel ritmo, continua a spuntare gli obiettivi.","Sei a buon punto con la settimana.","Ci siamo quasi, manca poco!","Settimana completata, ottimo lavoro! 🎉"];
+function renderGoalProgress(goals,st,countEl,fillEl,noteEl,notes){
+  const total=goals.length,done=goals.filter(g=>st[g.key]).length;
+  document.getElementById(countEl).textContent=`${done}/${total}`;
+  const fill=document.getElementById(fillEl);const pct=total?Math.round((done/total)*100):0;
+  fill.style.width=pct+'%';fill.classList.toggle('full',done===total&&total>0);
+  document.getElementById(noteEl).textContent=notes[total>0?Math.min(done,notes.length-1):0];
   return done;
 }
-
-// Mostra un pallino di notifica sulla tab "Obiettivi" quando ci sono
-// obiettivi (di oggi o della settimana) ancora da completare.
-function updateGoalsTabDot(){
-  const dailyDone = DAILY_GOALS.filter(g=>state.daily[g.key]).length;
-  const weeklyDone = WEEKLY_GOALS.filter(g=>state.weekly[g.key]).length;
-  const dailyTotal = DAILY_GOALS.length;
-  const weeklyTotal = WEEKLY_GOALS.length;
-  const allDone = dailyDone===dailyTotal && weeklyDone===weeklyTotal;
-  const anyPending = !allDone && (dailyDone>0 || weeklyDone>0);
-  document.getElementById('goalsTabDot').classList.toggle('show', anyPending);
+function updateGoalsDot(){
+  const dd=DAILY_GOALS.filter(g=>state.daily[g.key]).length,wd=WEEKLY_GOALS.filter(g=>state.weekly[g.key]).length;
+  const allDone=dd===DAILY_GOALS.length&&wd===WEEKLY_GOALS.length;
+  document.getElementById('goalsTabDot').classList.toggle('show',!allDone&&(dd>0||wd>0));
 }
-
 function renderGoals(){
-  const dailyEl = document.getElementById('dailyGoals');
-  dailyEl.innerHTML = '';
-  DAILY_GOALS.forEach(g=>{
-    const row = document.createElement('div');
-    row.className = 'goal-row' + (state.daily[g.key]?' checked':'');
-    row.innerHTML = `
-      <div class="glabel-wrap">
-        <span class="goal-icon"><svg viewBox="0 0 24 24">${GOAL_ICONS[g.icon]||''}</svg></span>
-        <span class="glabel">${g.label}</span>
-      </div>
-      <label class="switch"><input type="checkbox" id="d_${g.key}" ${state.daily[g.key]?'checked':''}><span class="slider"></span></label>`;
-    dailyEl.appendChild(row);
-  });
-  dailyEl.querySelectorAll('input').forEach((inp,i)=>{
-    inp.addEventListener('change', e=>{
-      state.daily[DAILY_GOALS[i].key]=e.target.checked;
-      saveState();
-      renderGoals();
-      if(e.target.checked) showToast(`Obiettivo raggiunto: ${DAILY_GOALS[i].label}`);
-    });
-  });
-
-  const weeklyEl = document.getElementById('weeklyGoals');
-  weeklyEl.innerHTML = '';
-  WEEKLY_GOALS.forEach(g=>{
-    const row = document.createElement('div');
-    row.className = 'goal-row' + (state.weekly[g.key]?' checked':'');
-    row.innerHTML = `
-      <div class="glabel-wrap">
-        <span class="goal-icon"><svg viewBox="0 0 24 24">${GOAL_ICONS[g.icon]||''}</svg></span>
-        <span class="glabel">${g.label}</span>
-      </div>
-      <label class="switch"><input type="checkbox" id="w_${g.key}" ${state.weekly[g.key]?'checked':''}><span class="slider"></span></label>`;
-    weeklyEl.appendChild(row);
-  });
-  weeklyEl.querySelectorAll('input').forEach((inp,i)=>{
-    inp.addEventListener('change', e=>{
-      state.weekly[WEEKLY_GOALS[i].key]=e.target.checked;
-      saveState();
-      renderGoals();
-      if(e.target.checked) showToast(`Obiettivo raggiunto: ${WEEKLY_GOALS[i].label}`);
-    });
-  });
-
-  renderGoalProgress(DAILY_GOALS, state.daily, 'dailyProgressCount', 'dailyProgressFill', 'dailyProgressNote', DAILY_NOTES);
-  renderGoalProgress(WEEKLY_GOALS, state.weekly, 'weeklyProgressCount', 'weeklyProgressFill', 'weeklyProgressNote', WEEKLY_NOTES);
-  updateGoalsTabDot();
+  const de=document.getElementById('dailyGoals');de.innerHTML='';
+  DAILY_GOALS.forEach(g=>{const r=document.createElement('div');r.className='goal-row'+(state.daily[g.key]?' done':'');r.innerHTML=`<div class="goal-left"><span class="goal-icon"><svg viewBox="0 0 24 24">${GOAL_ICONS[g.icon]||''}</svg></span><span class="goal-label">${g.label}</span></div><label class="switch"><input type="checkbox" id="d_${g.key}" ${state.daily[g.key]?'checked':''}><span class="slider"></span></label>`;de.appendChild(r);});
+  de.querySelectorAll('input').forEach((inp,i)=>{inp.addEventListener('change',e=>{state.daily[DAILY_GOALS[i].key]=e.target.checked;saveState();renderGoals();if(e.target.checked)showToast(`Obiettivo raggiunto: ${DAILY_GOALS[i].label}`);});});
+  const we=document.getElementById('weeklyGoals');we.innerHTML='';
+  WEEKLY_GOALS.forEach(g=>{const r=document.createElement('div');r.className='goal-row'+(state.weekly[g.key]?' done':'');r.innerHTML=`<div class="goal-left"><span class="goal-icon"><svg viewBox="0 0 24 24">${GOAL_ICONS[g.icon]||''}</svg></span><span class="goal-label">${g.label}</span></div><label class="switch"><input type="checkbox" id="w_${g.key}" ${state.weekly[g.key]?'checked':''}><span class="slider"></span></label>`;we.appendChild(r);});
+  we.querySelectorAll('input').forEach((inp,i)=>{inp.addEventListener('change',e=>{state.weekly[WEEKLY_GOALS[i].key]=e.target.checked;saveState();renderGoals();if(e.target.checked)showToast(`Obiettivo raggiunto: ${WEEKLY_GOALS[i].label}`);});});
+  renderGoalProgress(DAILY_GOALS,state.daily,'dailyProgressCount','dailyProgressFill','dailyProgressNote',DAILY_NOTES);
+  renderGoalProgress(WEEKLY_GOALS,state.weekly,'weeklyProgressCount','weeklyProgressFill','weeklyProgressNote',WEEKLY_NOTES);
+  updateGoalsDot();
 }
-
-/* ================= TABS ================= */
 function switchTab(name){
   document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));
   document.getElementById('tab-'+name).classList.add('active');
-  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.toggle('active', b.dataset.tab===name));
+  document.querySelectorAll('.tab-item').forEach(b=>b.classList.toggle('active',b.dataset.tab===name));
 }
-document.querySelectorAll('.tab-btn').forEach(btn=>{
-  btn.addEventListener('click', ()=>switchTab(btn.dataset.tab));
-});
-
-/* ================= SETTINGS SHEET ================= */
-const sheetOverlay = document.getElementById('sheetOverlay');
-const nameInput = document.getElementById('nameInput');
-document.getElementById('settingsBtn').addEventListener('click', ()=>{
-  nameInput.value = state.userName || '';
-  sheetOverlay.classList.add('open');
-});
-sheetOverlay.addEventListener('click', e=>{ if(e.target===sheetOverlay) sheetOverlay.classList.remove('open'); });
-nameInput.addEventListener('input', e=>{
-  state.userName = e.target.value.trim();
-  saveState();
-  renderHeader();
-});
-
-/* ================= TOAST ================= */
+document.querySelectorAll('.tab-item').forEach(b=>{b.addEventListener('click',()=>switchTab(b.dataset.tab));});
+const sheetOverlay=document.getElementById('sheetOverlay'),nameInput=document.getElementById('nameInput');
+document.getElementById('settingsBtn').addEventListener('click',()=>{nameInput.value=state.userName||'';sheetOverlay.classList.add('open');});
+sheetOverlay.addEventListener('click',e=>{if(e.target===sheetOverlay)sheetOverlay.classList.remove('open');});
+nameInput.addEventListener('input',e=>{state.userName=e.target.value.trim();saveState();renderHeader();});
 let toastTimer;
-function showToast(msg){
-  const t = document.getElementById('toast');
-  t.textContent = msg; t.classList.add('show');
-  clearTimeout(toastTimer);
-  toastTimer = setTimeout(()=>t.classList.remove('show'), 2600);
-}
-
-/* ================= EXPORT / IMPORT ================= */
+function showToast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(()=>t.classList.remove('show'),2600);}
 function exportData(){
-  const blob = new Blob([JSON.stringify(state,null,2)], {type:'application/json'});
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement('a');
-  a.href = url; a.download = `piano-alimentare-${new Date().toISOString().slice(0,10)}.json`;
-  a.click(); URL.revokeObjectURL(url);
-  showToast('Dati esportati');
+  const blob=new Blob([JSON.stringify(state,null,2)],{type:'application/json'});
+  const url=URL.createObjectURL(blob);const a=document.createElement('a');
+  a.href=url;a.download=`piano-${new Date().toISOString().slice(0,10)}.json`;a.click();URL.revokeObjectURL(url);showToast('Dati esportati');
 }
 function importData(file){
-  const reader = new FileReader();
-  reader.onload = e=>{
-    try{
-      const data = JSON.parse(e.target.result);
-      if(data.selections) state.selections = data.selections;
-      if(data.completed) state.completed = data.completed;
-      if(data.daily) state.daily = data.daily;
-      if(data.weekly) state.weekly = data.weekly;
-      if(data.weeklyMenu) state.weeklyMenu = data.weeklyMenu;
-      if(typeof data.userName === 'string'){
-        state.userName = data.userName;
-        nameInput.value = state.userName;
-      }
-      if(typeof data.lastAutoLoadDate === 'string') state.lastAutoLoadDate = data.lastAutoLoadDate;
-      ensureStateShape();
-      celebrated = false;
-      saveState();
-      renderAll();
-      showToast('Dati importati con successo');
-    }catch(err){ showToast('File non valido'); }
-  };
-  reader.readAsText(file);
+  const r=new FileReader();r.onload=e=>{try{const data=JSON.parse(e.target.result);if(data.selections)state.selections=data.selections;if(data.completed)state.completed=data.completed;if(data.daily)state.daily=data.daily;if(data.weekly)state.weekly=data.weekly;if(data.weeklyMenu)state.weeklyMenu=data.weeklyMenu;if(typeof data.userName==='string'){state.userName=data.userName;nameInput.value=state.userName;}if(typeof data.lastAutoLoadDate==='string')state.lastAutoLoadDate=data.lastAutoLoadDate;ensureStateShape();celebrated=false;saveState();renderAll();showToast('Dati importati con successo');}catch(err){showToast('File non valido');}};r.readAsText(file);
 }
-document.getElementById('exportBtn').addEventListener('click', exportData);
-document.getElementById('exportBtn2').addEventListener('click', exportData);
-document.getElementById('importFile').addEventListener('change', e=>{ if(e.target.files[0]) importData(e.target.files[0]); });
-document.getElementById('importFile2').addEventListener('change', e=>{ if(e.target.files[0]) importData(e.target.files[0]); });
-
-/* ================= RESET ================= */
-document.getElementById('resetDayBtn').addEventListener('click', ()=>{
-  if(!confirm('Azzerare tutti i pasti e gli obiettivi di oggi? Questa azione non può essere annullata.')) return;
-  MEALS.forEach(m=>{ state.selections[m.key]={}; state.completed[m.key]=false; });
-  DAILY_GOALS.forEach(g=>state.daily[g.key]=false);
-  celebrated = false;
-  saveState();
-  renderAll();
-  showToast('Nuovo giorno: pasti e obiettivi azzerati');
-});
-document.getElementById('resetWeekBtn').addEventListener('click', ()=>{
-  if(!confirm('Azzerare gli obiettivi della settimana? Questa azione non può essere annullata.')) return;
-  WEEKLY_GOALS.forEach(g=>state.weekly[g.key]=false);
-  saveState();
-  renderGoals();
-  showToast('Nuova settimana: obiettivi azzerati');
-});
-
-/* ================= INIT ================= */
-function renderAll(){
-  renderHeader();
-  renderTodayList();
-  renderMealsDetail();
-  renderWeekMenu();
-  renderGoals();
-  renderRing();
-  renderKcalSummary();
+document.getElementById('exportBtn').addEventListener('click',exportData);
+document.getElementById('exportBtn2').addEventListener('click',exportData);
+document.getElementById('importFile').addEventListener('change',e=>{if(e.target.files[0])importData(e.target.files[0]);});
+document.getElementById('importFile2').addEventListener('change',e=>{if(e.target.files[0])importData(e.target.files[0]);});
+document.getElementById('resetDayBtn').addEventListener('click',()=>{if(!confirm('Azzerare tutti i pasti e gli obiettivi di oggi?'))return;MEALS.forEach(m=>{state.selections[m.key]={};state.completed[m.key]=false;});DAILY_GOALS.forEach(g=>state.daily[g.key]=false);celebrated=false;saveState();renderAll();showToast('Nuovo giorno: pasti e obiettivi azzerati');});
+document.getElementById('resetWeekBtn').addEventListener('click',()=>{if(!confirm('Azzerare gli obiettivi della settimana?'))return;WEEKLY_GOALS.forEach(g=>state.weekly[g.key]=false);saveState();renderGoals();showToast('Nuova settimana: obiettivi azzerati');});
+function renderAll(){renderHeader();renderToday();renderMeals();renderWeek();renderGoals();renderRing();renderKcal();}
+function buildOnboarding(){
+  const inner=document.getElementById('onboardingBox');
+  inner.innerHTML=`<div class="onboarding-emoji">👋</div><h2>Benvenuto</h2><p>Come ti chiami? Personalizzeremo l'app con il tuo nome.</p><input type="text" id="onbName" placeholder="Il tuo nome" autocomplete="off" maxlength="24"/><button class="btn" id="onbStart">Inizia</button><button class="onboarding-skip" id="onbSkip">Salta per ora</button>`;
+  const ov=document.getElementById('onboardingOverlay'),inp=document.getElementById('onbName'),start=document.getElementById('onbStart'),skip=document.getElementById('onbSkip');
+  function done(name){state.userName=(name||'').trim();saveState();nameInput.value=state.userName;renderHeader();ov.classList.add('hidden');setTimeout(()=>{ov.style.display='none';},400);}
+  inp.focus();start.addEventListener('click',()=>done(inp.value));inp.addEventListener('keydown',e=>{if(e.key==='Enter')done(inp.value);});skip.addEventListener('click',()=>done(''));
 }
-
-/* ================= ONBOARDING (profilo prima di entrare) ================= */
-function buildOnboardingCard(){
-  const inner = document.getElementById('onboardingCardInner');
-  inner.innerHTML = `
-    <div class="onboarding-emoji">👋</div>
-    <h2>Benvenuto</h2>
-    <p>Come ti chiami? Personalizzeremo l'app con il tuo nome.</p>
-    <input type="text" id="onboardingNameInput" placeholder="Il tuo nome" autocomplete="off" maxlength="24" />
-    <button class="btn" id="onboardingStartBtn" style="width:100%;">Inizia</button>
-    <button class="onboarding-skip" id="onboardingSkipBtn">Salta per ora</button>`;
-
-  const onboardingOverlay = document.getElementById('onboardingOverlay');
-  const onboardingNameInput = document.getElementById('onboardingNameInput');
-  const onboardingStartBtn = document.getElementById('onboardingStartBtn');
-  const onboardingSkipBtn = document.getElementById('onboardingSkipBtn');
-
-  function completeOnboarding(name){
-    state.userName = (name || '').trim();
-    saveState();
-    nameInput.value = state.userName;
-    renderHeader();
-    onboardingOverlay.classList.add('hidden');
-    setTimeout(()=>{ onboardingOverlay.style.display = 'none'; }, 320);
-  }
-
-  onboardingNameInput.focus();
-  onboardingStartBtn.addEventListener('click', ()=>completeOnboarding(onboardingNameInput.value));
-  onboardingNameInput.addEventListener('keydown', e=>{
-    if(e.key === 'Enter') completeOnboarding(onboardingNameInput.value);
-  });
-  onboardingSkipBtn.addEventListener('click', ()=>completeOnboarding(''));
-}
-
 function init(){
-  loadState();
-  const loadedFromWeek = autoLoadTodayFromWeek();
-  saveState();
-
-  document.getElementById('appRoot').style.visibility = 'visible';
-  renderAll();
-
-  const onboardingOverlay = document.getElementById('onboardingOverlay');
-  if(state.userName){
-    onboardingOverlay.style.display = 'none';
-  } else {
-    buildOnboardingCard();
-  }
-
-  if(loadedFromWeek){
-    setTimeout(()=>showToast('Pasti di oggi caricati dal piano settimanale'), 600);
-  }
+  loadState();const loaded=autoLoadTodayFromWeek();saveState();
+  document.getElementById('appRoot').style.visibility='visible';renderAll();
+  const ov=document.getElementById('onboardingOverlay');
+  if(state.userName){ov.style.display='none';}else{buildOnboarding();}
+  if(loaded)setTimeout(()=>showToast('Pasti di oggi caricati dal piano settimanale'),600);
 }
-
 init();
 </script>
 </body>
