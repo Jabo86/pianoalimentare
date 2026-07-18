@@ -1146,6 +1146,202 @@
   }
   #importFile,#importFile2{display:none;}
 
+  /* ===== SHOPPING LIST ===== */
+  .shop-input-row{
+    display:flex;
+    gap:10px;
+    align-items:center;
+    margin-bottom:14px;
+  }
+  .shop-input-row input{
+    flex:1;
+    padding:11px 14px;
+    border:1.5px solid var(--line);
+    border-radius:var(--radius-sm);
+    font-size:14px;
+    font-family:'Inter',sans-serif;
+    background:var(--bg);
+    color:var(--text);
+    outline:none;
+    transition:border-color .2s ease;
+  }
+  .shop-input-row input:focus{
+    border-color:var(--green);
+    box-shadow:0 0 0 3px var(--green-glow);
+  }
+  .shop-input-row .btn-add{
+    padding:10px 18px;
+    background:var(--green);
+    color:#fff;
+    border-radius:var(--radius-sm);
+    font-weight:700;
+    font-size:13px;
+    transition:all .2s ease;
+    flex-shrink:0;
+  }
+  .shop-input-row .btn-add:hover{background:#1A6B48;transform:translateY(-1px);}
+  .shop-input-row .btn-add:active{transform:scale(0.97);}
+
+  .shop-list{
+    display:flex;
+    flex-direction:column;
+    gap:6px;
+  }
+  .shop-item{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    padding:10px 12px;
+    border-radius:var(--radius-sm);
+    background:var(--bg);
+    transition:all .2s ease;
+  }
+  .shop-item:hover{background:var(--green-soft);}
+  .shop-item.done{
+    opacity:0.55;
+    background:transparent;
+  }
+  .shop-item .shop-check{
+    width:24px;height:24px;
+    border-radius:50%;
+    border:2px solid var(--line);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:none;
+    color:transparent;
+    flex-shrink:0;
+    transition:all .2s ease;
+  }
+  .shop-item .shop-check.done{
+    background:var(--green);
+    border-color:var(--green);
+    color:#fff;
+  }
+  .shop-item .shop-check svg{width:12px;height:12px;}
+  .shop-item .shop-text{
+    flex:1;
+    font-size:14px;
+    font-weight:500;
+    word-break:break-word;
+    transition:all .2s ease;
+  }
+  .shop-item.done .shop-text{
+    text-decoration:line-through;
+    color:var(--text-soft);
+  }
+  .shop-item .shop-del{
+    width:28px;height:28px;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:var(--rose);
+    background:rgba(214,90,74,0.08);
+    flex-shrink:0;
+    transition:all .2s ease;
+  }
+  .shop-item .shop-del:hover{background:rgba(214,90,74,0.18);transform:scale(1.08);}
+  .shop-item .shop-del:active{transform:scale(0.92);}
+  .shop-item .shop-del svg{width:14px;height:14px;}
+
+  .shop-empty{
+    text-align:center;
+    padding:24px 12px;
+    color:var(--text-soft);
+    font-size:13px;
+    font-style:italic;
+  }
+
+  .shop-total-card{
+    background:linear-gradient(145deg, #0C1914 0%, #1A3428 100%);
+    border-radius:var(--radius-lg);
+    padding:18px 20px;
+    margin-top:16px;
+    position:relative;
+    overflow:hidden;
+    box-shadow:var(--shadow-lg);
+  }
+  .shop-total-card::after{
+    content:'';
+    position:absolute;
+    inset:0;
+    background:radial-gradient(ellipse 70% 50% at 20% 80%, rgba(217,144,46,0.18), transparent 55%);
+    pointer-events:none;
+  }
+  .shop-total-label{
+    font-size:9px;
+    font-weight:700;
+    text-transform:uppercase;
+    letter-spacing:.15em;
+    color:#94B8A4;
+    margin-bottom:6px;
+    position:relative;
+    z-index:1;
+  }
+  .shop-total-row{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    position:relative;
+    z-index:1;
+    flex-wrap:wrap;
+  }
+  .shop-total-row input{
+    flex:1;
+    min-width:100px;
+    padding:10px 14px;
+    border:1.5px solid rgba(255,255,255,0.10);
+    border-radius:var(--radius-sm);
+    font-size:16px;
+    font-family:'IBM Plex Mono',monospace;
+    font-weight:700;
+    background:rgba(255,255,255,0.05);
+    color:#fff;
+    outline:none;
+    transition:border-color .2s ease;
+    max-width:180px;
+  }
+  .shop-total-row input::placeholder{color:rgba(255,255,255,0.25);}
+  .shop-total-row input:focus{
+    border-color:var(--gold);
+    box-shadow:0 0 0 3px rgba(217,144,46,0.20);
+  }
+  .shop-total-row .unit{
+    font-size:14px;
+    font-weight:500;
+    color:#94B8A4;
+  }
+  .shop-total-display{
+    font-family:'IBM Plex Mono',monospace;
+    font-weight:700;
+    font-size:28px;
+    color:#F5D99E;
+    line-height:1;
+    position:relative;
+    z-index:1;
+  }
+  .shop-total-display small{
+    font-size:14px;
+    font-weight:500;
+    color:#94B8A4;
+  }
+  .shop-total-note{
+    font-size:9.5px;
+    color:#7AA08A;
+    margin-top:6px;
+    line-height:1.3;
+    position:relative;
+    z-index:1;
+  }
+
+  .shop-actions-bar{
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+    margin-top:14px;
+  }
+
   /* ===== TAB BAR ===== */
   .tab-bar{
     position:fixed;
@@ -1385,6 +1581,8 @@
     .chart-bars{height:65px;}
     .chart-bar{max-width:18px;}
     .stat-header .stat-value{font-size:16px;}
+    .shop-total-display{font-size:22px;}
+    .shop-total-row input{max-width:140px;}
   }
   @media (max-width:360px){
     .hero-greeting{font-size:26px;}
@@ -1392,11 +1590,13 @@
     .summary-price{font-size:15px;padding:2px 10px;}
     .tab-item{font-size:8px;}
     .tab-item svg{width:18px;height:18px;}
+    .shop-total-row input{max-width:120px;}
   }
   @media (prefers-reduced-motion:reduce){
     *{transition:none!important;animation:none!important;}
   }
 </style>
+<base target="_blank">
 </head>
 <body>
 
@@ -1612,6 +1812,36 @@
       </div>
     </section>
 
+    <!-- TAB: SPESA -->
+    <section class="tab-panel" id="tab-spesa">
+      <h2 class="section-title">Lista della spesa</h2>
+      <p class="section-sub">Aggiungi gli articoli che ti servono e segna cosa hai già preso.</p>
+
+      <div class="card">
+        <div class="shop-input-row">
+          <input type="text" id="shopInput" placeholder="Es. Latte scremato, Banane..." autocomplete="off" maxlength="60">
+          <button class="btn-add" id="shopAddBtn">Aggiungi</button>
+        </div>
+        <div id="shopList" class="shop-list">
+          <div class="shop-empty">Nessun articolo nella lista. Aggiungi il primo!</div>
+        </div>
+      </div>
+
+      <div class="shop-total-card">
+        <div class="shop-total-label">Totale speso</div>
+        <div class="shop-total-row">
+          <input type="number" id="shopTotalInput" placeholder="0.00" step="0.01" min="0">
+          <span class="unit">€</span>
+        </div>
+        <div class="shop-total-note">Inserisci manualmente quanto hai speso. I dati vengono salvati automaticamente.</div>
+      </div>
+
+      <div class="shop-actions-bar">
+        <button class="btn btn-ghost" id="clearShopBtn">Svuota lista</button>
+        <button class="btn btn-ghost" id="uncheckAllShopBtn">Deseleziona tutti</button>
+      </div>
+    </section>
+
     <!-- TAB: RIFERIMENTI -->
     <section class="tab-panel" id="tab-riferimenti">
       <h2 class="section-title">Il tuo piano</h2>
@@ -1694,6 +1924,10 @@
       <svg viewBox="0 0 24 24"><path d="M21 12v4a2 2 0 01-2 2H5a2 2 0 01-2-2V6a2 2 0 012-2h7"/><path d="M15 6h6v6"/><path d="M21 3l-9 9"/></svg>
       Stats
     </button>
+    <button class="tab-item" data-tab="spesa">
+      <svg viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+      Spesa
+    </button>
     <button class="tab-item" data-tab="riferimenti">
       <svg viewBox="0 0 24 24"><path d="M4 5a2 2 0 012-2h9l5 5v11a2 2 0 01-2 2H6a2 2 0 01-2-2z"/><path d="M15 3v5h5"/></svg>
       Piano
@@ -1774,7 +2008,7 @@ const PREZZI = {
   '90g tempeh':1.50,
   '190g tofu':1.80
 };
-const PREZZI_FISSI = {'Frutta fresca':0.60,'Caffè della moka':0.10,'Verdure o ortaggi':0.80,'Olio extravergine d\'oliva':0.20};
+const PREZZI_FISSI = {'Frutta fresca':0.60,'Caffè della moka':0.10,'Verdure o ortaggi':0.80,"Olio extravergine d'oliva":0.20};
 
 const CEREALE_COLAZIONE = [
   "40g avena (o cornflakes)","40g farina di avena","60g pane integrale",
@@ -1889,7 +2123,9 @@ let state={
   weightHistory:[],
   lastWeightDate:null,
   stepsHistory:[],
-  sleepHistory:[]
+  sleepHistory:[],
+  shoppingList:[],
+  shoppingTotal:null
 };
 let celebrated=false;
 
@@ -1905,9 +2141,11 @@ function ensureStateShape(){
   if(state.height===undefined) state.height=null;
   if(state.weight===undefined) state.weight=null;
   if(state.lastWeightDate===undefined) state.lastWeightDate=null;
+  if(!state.shoppingList || !Array.isArray(state.shoppingList)) state.shoppingList=[];
+  if(state.shoppingTotal===undefined) state.shoppingTotal=null;
 }
 function loadState(){
-  try{const raw=localStorage.getItem(STORAGE_KEY);if(raw){const data=JSON.parse(raw);if(data.selections)state.selections=data.selections;if(data.completed)state.completed=data.completed;if(data.daily)state.daily=data.daily;if(data.weekly)state.weekly=data.weekly;if(data.weeklyMenu)state.weeklyMenu=data.weeklyMenu;if(typeof data.userName==='string')state.userName=data.userName;if(typeof data.lastAutoLoadDate==='string')state.lastAutoLoadDate=data.lastAutoLoadDate;if(data.height!==undefined)state.height=data.height;if(data.weight!==undefined)state.weight=data.weight;if(data.weightHistory)state.weightHistory=data.weightHistory;if(data.lastWeightDate)state.lastWeightDate=data.lastWeightDate;if(data.stepsHistory)state.stepsHistory=data.stepsHistory;if(data.sleepHistory)state.sleepHistory=data.sleepHistory;}}catch(e){}
+  try{const raw=localStorage.getItem(STORAGE_KEY);if(raw){const data=JSON.parse(raw);if(data.selections)state.selections=data.selections;if(data.completed)state.completed=data.completed;if(data.daily)state.daily=data.daily;if(data.weekly)state.weekly=data.weekly;if(data.weeklyMenu)state.weeklyMenu=data.weeklyMenu;if(typeof data.userName==='string')state.userName=data.userName;if(typeof data.lastAutoLoadDate==='string')state.lastAutoLoadDate=data.lastAutoLoadDate;if(data.height!==undefined)state.height=data.height;if(data.weight!==undefined)state.weight=data.weight;if(data.weightHistory)state.weightHistory=data.weightHistory;if(data.lastWeightDate)state.lastWeightDate=data.lastWeightDate;if(data.stepsHistory)state.stepsHistory=data.stepsHistory;if(data.sleepHistory)state.sleepHistory=data.sleepHistory;if(data.shoppingList)state.shoppingList=data.shoppingList;if(data.shoppingTotal!==undefined)state.shoppingTotal=data.shoppingTotal;}}catch(e){}
   ensureStateShape();
 }
 function saveState(){try{localStorage.setItem(STORAGE_KEY,JSON.stringify(state));}catch(e){showToast('Impossibile salvare');}}
@@ -2078,22 +2316,109 @@ function renderGoals(){
   updateGoalsDot();
 }
 
+/* ================= SHOPPING LIST ================= */
+function renderShoppingList(){
+  const listEl=document.getElementById('shopList');
+  const inputEl=document.getElementById('shopInput');
+  const totalInput=document.getElementById('shopTotalInput');
+  if(!listEl)return;
+
+  if(state.shoppingTotal!==null && totalInput){
+    totalInput.value=state.shoppingTotal;
+  }
+
+  if(!state.shoppingList || state.shoppingList.length===0){
+    listEl.innerHTML='<div class="shop-empty">Nessun articolo nella lista. Aggiungi il primo!</div>';
+    return;
+  }
+
+  listEl.innerHTML='';
+  state.shoppingList.forEach((item,index)=>{
+    const row=document.createElement('div');
+    row.className='shop-item'+(item.done?' done':'');
+    row.innerHTML=`
+      <button class="shop-check ${item.done?'done':''}" data-index="${index}">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7"/></svg>
+      </button>
+      <span class="shop-text">${escapeHtml(item.text)}</span>
+      <button class="shop-del" data-index="${index}" aria-label="Elimina">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
+      </button>
+    `;
+    listEl.appendChild(row);
+  });
+
+  listEl.querySelectorAll('.shop-check').forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      const idx=parseInt(btn.dataset.index);
+      state.shoppingList[idx].done=!state.shoppingList[idx].done;
+      saveState();
+      renderShoppingList();
+    });
+  });
+
+  listEl.querySelectorAll('.shop-del').forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      const idx=parseInt(btn.dataset.index);
+      state.shoppingList.splice(idx,1);
+      saveState();
+      renderShoppingList();
+    });
+  });
+}
+
+function addShopItem(){
+  const input=document.getElementById('shopInput');
+  const text=input.value.trim();
+  if(!text){
+    showToast('⚠️ Inserisci un articolo');
+    return;
+  }
+  state.shoppingList.push({text:text,done:false});
+  input.value='';
+  saveState();
+  renderShoppingList();
+  showToast('✅ Articolo aggiunto');
+}
+
+function clearShopList(){
+  if(!state.shoppingList || state.shoppingList.length===0){
+    showToast('La lista è già vuota');
+    return;
+  }
+  if(!confirm('Svuotare tutta la lista della spesa?'))return;
+  state.shoppingList=[];
+  saveState();
+  renderShoppingList();
+  showToast('Lista svuotata');
+}
+
+function uncheckAllShop(){
+  if(!state.shoppingList || state.shoppingList.length===0)return;
+  state.shoppingList.forEach(item=>item.done=false);
+  saveState();
+  renderShoppingList();
+  showToast('Tutti gli articoli deselezionati');
+}
+
+function escapeHtml(text){
+  const div=document.createElement('div');
+  div.textContent=text;
+  return div.innerHTML;
+}
+
 /* ================= STATS ================= */
 function renderStats(){
-  // PESO
   renderChart('weight', 'weightChartBars', 'weightAvg', 'weightHistory', 'weightInput', 'lastWeightDisplay', 'weightDateDisplay');
-  // PASSI
   renderChart('steps', 'stepsChartBars', 'stepsAvg', null, 'stepsInput', 'lastStepsDisplay', 'stepsDateDisplay');
-  // SONNO
   renderChart('sleep', 'sleepChartBars', 'sleepAvg', null, 'sleepInput', 'lastSleepDisplay', 'sleepDateDisplay');
-  
-  // Altezza e IMC
+
   const heightInput=document.getElementById('heightInput');
   if(state.height){heightInput.value=state.height;}
   const imcEl=document.getElementById('imcValue');
   const lastDateEl=document.getElementById('lastWeightDate');
   const reminderEl=document.getElementById('reminderText');
-  
+
   if(state.height && state.weight){
     const h=state.height/100;
     const imc=state.weight/(h*h);
@@ -2101,14 +2426,14 @@ function renderStats(){
   }else{
     imcEl.textContent='—';
   }
-  
+
   if(state.lastWeightDate){
     const d=new Date(state.lastWeightDate);
     lastDateEl.textContent=d.toLocaleDateString('it-IT');
   }else{
     lastDateEl.textContent='—';
   }
-  
+
   const now=new Date();
   const lastWeightDate=state.lastWeightDate?new Date(state.lastWeightDate):null;
   if(lastWeightDate){
@@ -2124,8 +2449,7 @@ function renderStats(){
     reminderEl.textContent='📌 Inserisci il tuo peso per iniziare a tracciare i progressi. Pesati il 1° di ogni mese!';
     reminderEl.style.color='var(--blue)';
   }
-  
-  // Storico pesi
+
   const historyEl=document.getElementById('weightHistory');
   if(state.weightHistory && state.weightHistory.length>0){
     historyEl.innerHTML='';
@@ -2157,8 +2481,7 @@ function renderChart(type, barsId, avgId, historyId, inputId, displayId, dateId)
   const dateDisplay = document.getElementById(dateId);
   const bars = document.getElementById(barsId);
   const avgEl = document.getElementById(avgId);
-  
-  // Mostra ultimo valore
+
   if(history && history.length>0){
     const sorted=[...history].sort((a,b)=>new Date(b.date)-new Date(a.date));
     const last=sorted[0];
@@ -2170,16 +2493,15 @@ function renderChart(type, barsId, avgId, historyId, inputId, displayId, dateId)
     display.innerHTML=`— <span class="unit">${label}</span>`;
     if(dateDisplay) dateDisplay.textContent='';
   }
-  
-  // Costruisci grafico a barre
+
   if(!bars)return;
-  const sortedHist=history?[...history].sort((a,b)=>new Date(a.date)-new Date(b.date)):[];
+  const sortedHist=history?[...history].sort((a,b)=>new Date(a.date)-new Date(a.date)):[];
   const last7=sortedHist.slice(-7);
-  
+
   const days=7;
   const today=new Date();
   const chartData=[];
-  
+
   for(let i=days-1; i>=0; i--){
     const d=new Date(today);
     d.setDate(d.getDate()-i);
@@ -2193,26 +2515,26 @@ function renderChart(type, barsId, avgId, historyId, inputId, displayId, dateId)
       isToday:i===0
     });
   }
-  
+
   const validData=chartData.filter(d=>d.value!==null);
   const avg=validData.length>0 ? validData.reduce((s,d)=>s+d.value,0)/validData.length : null;
   avgEl.textContent=avg!==null ? `Media: ${avg.toFixed(1)}` : 'Media: —';
-  
+
   const maxVal=validData.length>0 ? Math.max(...validData.map(d=>d.value)) : null;
   const minVal=validData.length>0 ? Math.min(...validData.map(d=>d.value)) : null;
   const range=maxVal && minVal ? maxVal-minVal : 1;
   const baseOffset=0.1;
-  
+
   bars.innerHTML='';
   chartData.forEach(data=>{
     const wrap=document.createElement('div');
     wrap.className='chart-bar-wrap';
-    
+
     const valueLabel=document.createElement('div');
     valueLabel.className='chart-bar-value';
     valueLabel.textContent=data.value!==null ? data.value.toFixed(type==='weight'?1:0) : '—';
     wrap.appendChild(valueLabel);
-    
+
     const bar=document.createElement('div');
     bar.className='chart-bar';
     if(data.value!==null){
@@ -2227,12 +2549,12 @@ function renderChart(type, barsId, avgId, historyId, inputId, displayId, dateId)
       bar.classList.add('today');
     }
     wrap.appendChild(bar);
-    
+
     const label=document.createElement('div');
     label.className='chart-bar-label';
     label.textContent=data.label;
     wrap.appendChild(label);
-    
+
     bars.appendChild(wrap);
   });
 }
@@ -2242,25 +2564,23 @@ function saveStat(type){
   const historyMap={weight:'weightHistory', steps:'stepsHistory', sleep:'sleepHistory'};
   const labelMap={weight:'Peso', steps:'Passi', sleep:'Sonno'};
   const unitMap={weight:'kg', steps:'passi', sleep:'ore'};
-  const valMap={weight:1, steps:1, sleep:0.5};
-  
+
   const input=document.getElementById(inputMap[type]);
   const val=parseFloat(input.value);
   if(isNaN(val) || val<0){
     showToast(`⚠️ Inserisci un valore valido per ${labelMap[type]}`);
     return;
   }
-  
+
   const entry={value:val, date:new Date().toISOString()};
   if(!state[historyMap[type]]) state[historyMap[type]]=[];
   state[historyMap[type]].push(entry);
-  
-  // Se è peso, aggiorna anche il peso corrente
+
   if(type==='weight'){
     state.weight=val;
     state.lastWeightDate=entry.date;
   }
-  
+
   saveState();
   renderStats();
   showToast(`✅ ${labelMap[type]}: ${val} ${unitMap[type]} salvati!`);
@@ -2270,7 +2590,7 @@ function saveHeight(){
   const input=document.getElementById('heightInput');
   const val=parseFloat(input.value);
   if(isNaN(val) || val<=0 || val>250){
-    showToast('⚠️ Inserisci un\'altezza valida (100-250 cm)');
+    showToast("⚠️ Inserisci un'altezza valida (100-250 cm)");
     return;
   }
   state.height=val;
@@ -2296,6 +2616,7 @@ function switchTab(name){
   if(panel)panel.classList.add('active');
   document.querySelectorAll('.tab-item').forEach(b=>b.classList.toggle('active',b.dataset.tab===name));
   if(name==='statistiche') renderStats();
+  if(name==='spesa') renderShoppingList();
 }
 document.querySelectorAll('.tab-item').forEach(b=>{b.addEventListener('click',()=>switchTab(b.dataset.tab));});
 
@@ -2316,7 +2637,7 @@ function exportData(){
   a.href=url;a.download=`piano-${new Date().toISOString().slice(0,10)}.json`;a.click();URL.revokeObjectURL(url);showToast('Dati esportati');
 }
 function importData(file){
-  const r=new FileReader();r.onload=e=>{try{const data=JSON.parse(e.target.result);if(data.selections)state.selections=data.selections;if(data.completed)state.completed=data.completed;if(data.daily)state.daily=data.daily;if(data.weekly)state.weekly=data.weekly;if(data.weeklyMenu)state.weeklyMenu=data.weeklyMenu;if(typeof data.userName==='string'){state.userName=data.userName;nameInput.value=state.userName;}if(typeof data.lastAutoLoadDate==='string')state.lastAutoLoadDate=data.lastAutoLoadDate;if(data.height!==undefined)state.height=data.height;if(data.weight!==undefined)state.weight=data.weight;if(data.weightHistory)state.weightHistory=data.weightHistory;if(data.lastWeightDate)state.lastWeightDate=data.lastWeightDate;if(data.stepsHistory)state.stepsHistory=data.stepsHistory;if(data.sleepHistory)state.sleepHistory=data.sleepHistory;ensureStateShape();celebrated=false;saveState();renderAll();showToast('Dati importati con successo');}catch(err){showToast('File non valido');}};r.readAsText(file);
+  const r=new FileReader();r.onload=e=>{try{const data=JSON.parse(e.target.result);if(data.selections)state.selections=data.selections;if(data.completed)state.completed=data.completed;if(data.daily)state.daily=data.daily;if(data.weekly)state.weekly=data.weekly;if(data.weeklyMenu)state.weeklyMenu=data.weeklyMenu;if(typeof data.userName==='string'){state.userName=data.userName;nameInput.value=state.userName;}if(typeof data.lastAutoLoadDate==='string')state.lastAutoLoadDate=data.lastAutoLoadDate;if(data.height!==undefined)state.height=data.height;if(data.weight!==undefined)state.weight=data.weight;if(data.weightHistory)state.weightHistory=data.weightHistory;if(data.lastWeightDate)state.lastWeightDate=data.lastWeightDate;if(data.stepsHistory)state.stepsHistory=data.stepsHistory;if(data.sleepHistory)state.sleepHistory=data.sleepHistory;if(data.shoppingList)state.shoppingList=data.shoppingList;if(data.shoppingTotal!==undefined)state.shoppingTotal=data.shoppingTotal;ensureStateShape();celebrated=false;saveState();renderAll();showToast('Dati importati con successo');}catch(err){showToast('File non valido');}};r.readAsText(file);
 }
 document.getElementById('exportBtn').addEventListener('click',exportData);
 document.getElementById('exportBtn2').addEventListener('click',exportData);
@@ -2339,6 +2660,17 @@ document.getElementById('stepsInput').addEventListener('keydown',e=>{if(e.key===
 document.getElementById('sleepInput').addEventListener('keydown',e=>{if(e.key==='Enter')saveStat('sleep');});
 document.getElementById('heightInput').addEventListener('keydown',e=>{if(e.key==='Enter')saveHeight();});
 
+/* ================= SHOPPING EVENTS ================= */
+document.getElementById('shopAddBtn').addEventListener('click',addShopItem);
+document.getElementById('shopInput').addEventListener('keydown',e=>{if(e.key==='Enter')addShopItem();});
+document.getElementById('clearShopBtn').addEventListener('click',clearShopList);
+document.getElementById('uncheckAllShopBtn').addEventListener('click',uncheckAllShop);
+document.getElementById('shopTotalInput').addEventListener('input',e=>{
+  const val=parseFloat(e.target.value);
+  state.shoppingTotal=isNaN(val)?null:val;
+  saveState();
+});
+
 /* ================= RENDER ALL ================= */
 function renderAll(){
   renderHeader();
@@ -2348,8 +2680,12 @@ function renderAll(){
   renderGoals();
   renderRing();
   renderKcal();
+  renderShoppingList();
   if(document.getElementById('tab-statistiche').classList.contains('active')){
     renderStats();
+  }
+  if(document.getElementById('tab-spesa').classList.contains('active')){
+    renderShoppingList();
   }
 }
 
